@@ -195,5 +195,182 @@ Array untuk menyimpan nama toko, bunga, ,harga, dan stock yang tersedia pada mas
             { 2, 10, 10, 5 },
             { 5, 7, 12, 9 }
     };
-asdasd
+Fungsi untuk mengecek jumlah stock pada setiap cabang.
 
+    public static void cekStockCabang(int branchIndex, String[] bunga, int[][] stockBunga) {
+        System.out.println("Bunga\t\tStock");
+        for (int j = 0; j < bunga.length; j++) {
+            System.out.printf("%-10s\t%d\n", bunga[j], stockBunga[branchIndex][j]);
+        }
+    }
+
+Fungsi untuk menghitung penghasilan setiap cabang.
+
+    public static int hitungPendapatanCabang(int branchIndex, String[] bunga, int[] harga, int[][] stockBunga) {
+        int totalPendapatan = 0;
+        for (int j = 0; j < bunga.length; j++) {
+            totalPendapatan += stockBunga[branchIndex][j] * harga[j];
+        }
+        return totalPendapatan;
+    }
+
+Hasil dari kode program
+
+![alt text](fungsi.png)
+
+## Tugas
+1. Susun program untuk membuat dua buah array berikut isinya sebagai berikut. Array 
+pertama adalah array satu dimensi char KODE[10], berisi kode plat mobil. Array kedua, array 
+dua dimensi char KOTA[10][12] berisi nama kota yang berpasangan dengan kode plat mobil. 
+Ilustrasi tampilan array tersebut adalah sebagai berikut :
+![alt text](soaltugas1.png)
+Ketika pengguna memberikan input kode plat nomor maka program akan mengeluarkan 
+nama kota dari kode plat nomor tersebut.
+
+Kode program
+
+import java.util.Scanner;
+
+public class tugas1 {
+    public static void main(String[] args) {
+        char[] kode = {'A', 'B', 'D', 'E', 'F', 'G', 'H', 'L', 'N', 'T'};
+        char[][] kota = {
+            {'B', 'A', 'N', 'T', 'E', 'N'},
+            {'J', 'A', 'K', 'A', 'R', 'T', 'A'},
+            {'B', 'A', 'N', 'D', 'U', 'N', 'G'},
+            {'C', 'I', 'R', 'E', 'B', 'O', 'N'},
+            {'B', 'O', 'G', 'O', 'R'},
+            {'P', 'E', 'K', 'A', 'L', 'O', 'N', 'G', 'A', 'N'},
+            {'S', 'E', 'M', 'A', 'R', 'A', 'N', 'G'},
+            {'S', 'U', 'R', 'A', 'B', 'A', 'Y', 'A'},
+            {'M', 'A', 'L', 'A', 'N', 'G'},
+            {'T', 'E', 'G', 'A', 'L'}
+        };
+
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Masukkan kode plat nomor: ");
+        char inputKode = input.next().charAt(0);
+
+        int index = -1;
+        for (int i = 0; i < kode.length; i++) {
+            if (kode[i] == inputKode) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index != -1) {
+            char[] listKota = kota[index];
+            String namaKota = new String(listKota);
+            System.out.println("Kota " + namaKota);
+        } else {
+            System.out.println("Kode plat tidak valid!");
+        }
+    }
+}
+
+Hasil dari kode program
+
+![alt text](outputsoal1.png)
+
+2. Buat program untuk menghitung rumus kecepatan, jarak, dan waktu
+Berikut adalah persamaan untuk menghitung rumus tersebut :
+Rumus Kecepatan
+𝑣 =
+𝑠
+𝑡
+Rumus Jarak
+𝑠 = 𝑣.𝑡
+Rumus Waktu
+𝑡 =
+𝑠
+𝑣
+Keterangan :
+𝑣 = 𝑘𝑒𝑐𝑒𝑝𝑎𝑡𝑎𝑛
+𝑠 = 𝑗𝑎𝑟𝑎𝑘
+𝑡 = 𝑤𝑎𝑘𝑡𝑢
+Program yang dibuat memiliki fungsi sebagai berikut:
+a. Menu (Untuk memilih rumus yang akan dihitung (kecepatan/jarak/waktu))
+b. Menghitung hasil perhitungan Kecepatan
+c. Menghitung hasil perhitungan Jarak
+d. Menghitung hasil perhitungan Waktu
+Panggil fungsi-fungsi tersebut pada fungsi main!
+
+Kode program
+
+import java.util.Scanner;
+
+public class tugas2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Pilih rumus yang ingin dihitung:");
+        System.out.println("1. Kecepatan");
+        System.out.println("2. Jarak");
+        System.out.println("3. Waktu");
+        System.out.print("1/2/3: ");
+
+        int pilihan = input.nextInt();
+
+        switch (pilihan) {
+            case 1:
+                hitungKecepatan();
+                break;
+            case 2:
+                hitungJarak();
+                break;
+            case 3:
+                hitungWaktu();
+                break;
+            default:
+                System.out.println("Pilihan tidak valid.");
+        }
+    }
+
+    public static void hitungKecepatan() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Masukkan jarak (s): ");
+        double jarak = input.nextDouble();
+
+        System.out.print("Masukkan waktu (t): ");
+        double waktu = input.nextDouble();
+
+        double kecepatan = jarak / waktu;
+
+        System.out.println("Kecepatan (v): " + kecepatan);
+    }
+
+    private static void hitungJarak() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Masukkan kecepatan (v): ");
+        double kecepatan = input.nextDouble();
+
+        System.out.print("Masukkan waktu (t): ");
+        double waktu = input.nextDouble();
+
+        double jarak = kecepatan * waktu;
+
+        System.out.println("Jarak (s): " + jarak);
+    }
+
+    private static void hitungWaktu() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Masukkan jarak (s): ");
+        double jarak = input.nextDouble();
+
+        System.out.print("Masukkan kecepatan (v): ");
+        double kecepatan = input.nextDouble();
+
+        double waktu = jarak / kecepatan;
+
+        System.out.println("Waktu (t): " + waktu);
+    }
+}
+
+Hasil dari kode program
+
+![alt text](outputsoal2.png)
