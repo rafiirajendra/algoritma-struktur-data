@@ -211,3 +211,38 @@ Jawab:
  Buku19 bukuRafi = new Buku19("Laskar Pelangi", "Andrea Hinata", 534, 19, 290000);
 ```
 6. Commit dan push kode program ke Github
+
+## 2.4 Latihan Praktikum
+1. Pada class Buku yang telah dibuat, tambahkan tiga method yaitu hitungHargaTotal(), 
+hitungDiskon(), dan hitungHargaBayar() dengan penjelasan sebagai berikut:
+- Method hitungHargaTotal() digunakan untuk menghitung harga total yang merupakan 
+perkalian antara harga dengan jumlah buku yang terjual
+- Method hitungDiskon() digunakan untuk menghitung diskon dengan aturan berikut:
+  - Jika harga total lebih dari 150000, maka harga didiskon sebesar 12%
+  - Jika harga total antara 75000 sampai 150000, maka harga didiskon sebesar 5%
+  - Jika harga total kurang dari 75000, maka harga tidak didiskon
+- Method hitungHargaBayar() digunakan untuk menghitung harga total setelah dikurangi diskon
+
+Class diagram Buku setelah penambahan ketiga method tersebut adalah sebagai berikut.
+![alt text](<latihan soal no 1.png>)
+
+Jawab:
+
+2. Buat program berdasarkan class diagram berikut ini!
+
+![alt text](<latihan soal no 2.png>)
+
+Penjelasan dari atribut dan method pada class Dragon tersebut adalah sebagai berikut:
+- Atribut x digunakan untuk menyimpan posisi koordinat x (mendatar) dari dragon, sedangkan 
+atribut y untuk posisi koordinat y (vertikal)
+- Atribut width digunakan untuk menyimpan lebar dari area permainan, sedangkan height
+untuk menyimpan panjang area
+- Method moveLeft() digunakan untuk mengubah posisi dragon ke kiri (koordinat x akan 
+berkurang 1), sedangkan moveRight() untuk bergerak ke kanan (koordinat x akan bertambah 
+1). Perlu diperhatikan bahwa koordinat x tidak boleh lebih kecil dari 0 atau lebih besar dari 
+nilai width. Jika koordinat x < 0 atau x > width maka panggil method detectCollision()
+- Method moveUp() digunakan untuk mengubah posisi dragon ke atas (koordinat y akan 
+berkurang 1), sedangkan moveDown() untuk bergerak ke bawah (koordinat y akan bertambah 1). Perlu diperhatikan bahwa koordinat y tidak boleh lebih kecil dari 0 atau lebih besar dari 
+nilai height. Jika koordinat y < 0 atau y > height maka panggil method detectCollision()
+- Method detectCollision() akan mencetak pesan “Game Over” apabila dragon menyentuh 
+ujung area permainan
