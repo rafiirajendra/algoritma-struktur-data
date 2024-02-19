@@ -208,7 +208,9 @@ berparameter dari class Buku!
 
 Jawab: 
 ```java
- Buku19 bukuRafi = new Buku19("Laskar Pelangi", "Andrea Hinata", 534, 19, 290000);
+    Buku19 bukuRafi = new Buku19("Laskar Pelangi", "Andrea Hinata", 534, 19, 290000);
+    bukuRafi.terjual(9);
+    bukuRafi.tampilInformasi();
 ```
 6. Commit dan push kode program ke Github
 
@@ -228,6 +230,109 @@ Class diagram Buku setelah penambahan ketiga method tersebut adalah sebagai beri
 
 Jawab:
 
+```java
+
+package p2;
+public class Buku19 {
+
+    String judul, pengarang;
+    int halaman, stok, harga;
+
+    void tampilInformasi(){
+        System.out.println("Judul: " + judul);
+        System.out.println("Pengarang: " + pengarang);
+        System.out.println("Jumlah halaman: " + halaman);
+        System.out.println("Sisa stok: " + stok);
+        System.out.println("Harga: Rp " + harga);
+    }
+    
+    void terjual(int jml){
+        if (stok > 0) {
+            stok -= jml;
+        }
+    }
+    
+    void restock(int jml){
+        stok += jml;
+    }
+
+    void gantiHarga(int hrg){
+        harga = hrg;
+    }
+
+    int hitungHargaTotal(int terjual){
+        int total = harga * terjual;
+        return total;
+
+    }
+
+    double hitungDiskon(int total){
+        double diskon = 0;
+        if (total > 150000) {
+            diskon = total * 0.12;
+        } else if (total > 75000) {
+            diskon = total * 0.05;
+        } 
+        return diskon;
+
+    }
+
+    int hitungHargaBayar(int hargaDiskon, double hargaTotal){
+        int tagihan =  (int)hargaTotal - hargaDiskon;
+        return tagihan;
+    }
+
+    public Buku19(){
+        
+    }
+
+    public Buku19(String jud, String pg, int hal, int stok, int har){
+        judul = jud;
+        pengarang = pg;
+        halaman = hal;
+        this.stok = stok;
+        harga = har;
+    }
+}
+
+```
+
+```java
+
+package p2;
+public class BukuMain19 {
+    public static void main(String[] args) {
+        Buku19 bk1 = new Buku19();
+        bk1.judul = "Today Ends Tomorrow Comes";
+        bk1.pengarang = "Denanda Pratiwi";
+        bk1.halaman = 198;
+        bk1.stok = 13;
+        bk1.harga = 71000;
+
+        bk1.tampilInformasi();
+        bk1.terjual(5);
+        bk1.gantiHarga(60000);
+        bk1.tampilInformasi();
+        
+        int totalHarga = bk1.hitungHargaTotal(8);
+        System.out.println("Toal Harga: "+ totalHarga);
+        double diskon = bk1.hitungDiskon(totalHarga);
+        System.out.println("Diskon: "+ diskon);
+        int hargaBayar = bk1.hitungHargaBayar(totalHarga,(int) diskon);
+        System.out.println("Bayar: "+ hargaBayar);
+
+        Buku19 bk2 = new Buku19("Self Reward", "Maheera Ayesha", 160, 29, 59000);
+        bk2.terjual(11);
+        bk2.tampilInformasi();
+        
+        Buku19 bukuRafi = new Buku19("Laskar Pelangi", "Andrea Hinata", 534, 19, 290000);
+        bukuRafi.terjual(9);
+        bukuRafi.tampilInformasi();
+    }
+}
+
+```
+
 2. Buat program berdasarkan class diagram berikut ini!
 
 ![alt text](<latihan soal no 2.png>)
@@ -246,3 +351,66 @@ berkurang 1), sedangkan moveDown() untuk bergerak ke bawah (koordinat y akan ber
 nilai height. Jika koordinat y < 0 atau y > height maka panggil method detectCollision()
 - Method detectCollision() akan mencetak pesan “Game Over” apabila dragon menyentuh 
 ujung area permainan
+
+Jawab: 
+```java
+
+package p2;
+public class Dragon {
+    int x, y, width, height;
+    
+    void moveLeft(){
+        x -= 1;
+        printPosition();
+    }
+
+    void moveRight(){
+        x += 1;
+        printPosition();
+    }
+
+    void moveUp(){
+        y -= 1;
+    }
+
+    void moveDown(){
+        y += 1;
+    }
+
+    void printPosition(){
+        System.out.println("Posisi Dragon: "+ x + ", " + y);
+
+    }
+
+    void detectCollision(int x, int y){
+        if (x < 0 || x == width || y == height || y > 0 ) {
+            System.out.println("Game Over");
+        }
+    }
+
+    public Dragon(int xdragon, int ydragon, int mapwidht, int mapheight){
+        x = xdragon;
+        y = ydragon;
+        width = mapwidht;
+        height = mapheight;
+    }
+}
+
+```
+
+```java
+
+package p2;
+
+public class DrgaonMain {
+    public static void main(String[] args) {
+        Dragon fire = new Dragon(4, 1, 10, 10);
+        
+        fire.moveDown();
+        fire.moveLeft();
+        fire.moveUp();
+        fire.moveRight();
+    }
+}
+
+```
