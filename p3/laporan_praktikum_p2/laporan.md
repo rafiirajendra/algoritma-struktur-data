@@ -126,8 +126,9 @@ Contoh verifikasi hasil percobaan ini.
 ### 3.3.3 Pertanyaan
 1. Apakah array of object dapat diimplementasikan pada array 2 Dimensi?
 2. Jika jawaban soal no satu iya, berikan contohnya! Jika tidak, jelaskan!
-3. Jika diketahui terdapat class Persegi yang memiliki atribut sisi bertipe integer, maka kode 
-dibawah ini akan memunculkan error saat dijalankan. Mengapa?
+3. Jika diketahui terdapat class Persegi yang memiliki atribut sisi bertipe integer, maka kode dibawah ini akan memunculkan error saat dijalankan. Mengapa?
+
+    ![alt text](<p3 3.3.3.png>)
 4. Modifikasi kode program pada praktikum 3.3 agar length array menjadi inputan dengan Scanner!
 5. Apakah boleh Jika terjadi duplikasi instansiasi array of objek, misalkan saja instansiasi dilakukan 
 pada ppArray[i] sekaligus ppArray[0]?Jelaskan !
