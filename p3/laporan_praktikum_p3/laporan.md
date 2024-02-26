@@ -63,19 +63,19 @@ Cocokkan hasil compile kode program anda dengan gambar berikut ini.
 ### 3.2.3 Pertanyaan
 1. Berdasarkan uji coba 3.2, apakah class yang akan dibuat array of object harus selalu memiliki atribut dan sekaligus method?Jelaskan!
 
-    Jawab: 
+    Jawab: class yang akan dibut array of object tidak harus dan selalu memiliki atribut dan method. Class yang dibut array of object hanya perlu memiliki konstruktor saja yang digunakan untuk membuat objek dari class tersebut.
 
 2. Apakah class PersegiPanjang memiliki konstruktor?Jika tidak, kenapa dilakukan pemanggilan konstruktur pada baris program berikut :
 ![alt text](<p2 3.2.3.png>)
-Jawab: 
+Jawab: pada class PersegiPanjang tidak memiliki konstruktor, dilakukan pemanggilan konstruktor karena agar bisa terhubung dengan ArrayObject.
 3. Apa yang dimaksud dengan kode berikut ini:
 ![alt text](<p3 3.2.3.png>)
-Jawab: 
+Jawab: kode tersebut adalah kode untuk membuat array dengan nama PersegiPanjang dengan panjang array 3.
 4. Apa yang dimaksud dengan kode berikut ini:
 ![alt text](<p4 3.2.3.png>)
-Jawab:
+Jawab: kode tersebut adalah kode untuk mengisi atribut pada masing-masing index pada array.
 5. Mengapa class main dan juga class PersegiPanjang dipisahkan pada uji coba 3.2?
-Jawab: 
+Jawab: agar lebih mudah dan lebih rapi.
 
 ## 3.3 Percobaan 2: Menerima Input Isian Array Menggunakan Looping
 **Waktu: 50 menit**
@@ -125,14 +125,75 @@ Contoh verifikasi hasil percobaan ini.
 
 ### 3.3.3 Pertanyaan
 1. Apakah array of object dapat diimplementasikan pada array 2 Dimensi?
+
+    Jawab: Bisa, array of obeject dapat diimplementasikan pada array 2 Dimensi.
 2. Jika jawaban soal no satu iya, berikan contohnya! Jika tidak, jelaskan!
+
+    Jawab:  
+    
+    ```java
+        import java.util.Scanner;
+        public class ArrayObjects {
+            public static void main(String[] args) {
+                PersegiPanjang[][] ppArray = new PersegiPanjang[3][2];
+
+                Scanner sc = new Scanner(System.in);
+
+                for (int i = 0; i < 3; i++) {
+                    ppArray[i][0] = new PersegiPanjang();
+                    System.out.println("Persegi Panjang ke-" + i);
+                    System.out.print("Masukkan panjang: ");
+                    ppArray[i][0].panjang = sc.nextInt();
+                    ppArray[i][1] = new PersegiPanjang();
+                    System.out.print("Masukkan lebar: ");
+                    ppArray[i][1].lebar = sc.nextInt();
+                }
+
+                for (int i = 0; i < 3; i++) {
+                    System.out.println("Persegi panjang ke-" + i);
+                    System.out.println("Panjang: " + ppArray[i][0].panjang + ", Lebar: " + ppArray[i][1].lebar);
+                }
+            }
+        }
+    ```
 3. Jika diketahui terdapat class Persegi yang memiliki atribut sisi bertipe integer, maka kode dibawah ini akan memunculkan error saat dijalankan. Mengapa?
 
     ![alt text](<p3 3.3.3.png>)
+    Jawab: kode tersebut memunculkan error saat dijalankan karena tidak ada object Persegi yang di inisialisasi pada setiap elemen dalam array tersebut.
 4. Modifikasi kode program pada praktikum 3.3 agar length array menjadi inputan dengan Scanner!
-5. Apakah boleh Jika terjadi duplikasi instansiasi array of objek, misalkan saja instansiasi dilakukan 
-pada ppArray[i] sekaligus ppArray[0]?Jelaskan !
 
+    Jawab:
+
+    ```java
+    import java.util.Scanner;
+    public class ArrayObjects {
+        public static void main(String[] args) {
+            Scanner a = new Scanner(System.in);
+            System.out.print("Masukkan banyaknya persegi: ");
+            int banyak = a.nextInt();
+            PersegiPanjang[] ppArray = new PersegiPanjang[banyak];
+
+            Scanner sc = new Scanner(System.in);
+
+            for (int i = 0; i < 3; i++) {
+                ppArray[i] = new PersegiPanjang();
+                System.out.println("Persegi Panjang ke-" + i);
+                System.out.print("Masukkan panjang: ");
+                ppArray[i].panjang = sc.nextInt();
+                System.out.print("Masukkan lebar: ");
+                ppArray[i].lebar = sc.nextInt();
+            }
+
+            for (int i = 0; i < 3; i++) {
+                System.out.println("Persegi panjang ke-" + i);
+                System.out.println("Panjang: " + ppArray[i].panjang + ", Lebar: " + ppArray[i].lebar);
+            }
+        }
+    }
+    ```
+5. Apakah boleh Jika terjadi duplikasi instansiasi array of objek, misalkan saja instansiasi dilakukan pada ppArray[i] sekaligus ppArray[0]?Jelaskan !
+
+    Jawab: boleh saja jika terjadi duplikasi instansiasi array of objek tetapi harus hati-hati dalam penggunaannya karena data yang ada pada sebelumnya akan terganti dengan data yang baru.
 ## 3.4 Percobaan 3: Penambahan Operasi Matematika di Dalam Method
 **Waktu: 50 menit**
 Pada praktikum ini kita akan melakukan pengoperasian matematika beberapa atribut pada 
@@ -195,21 +256,44 @@ Cocokkan hasil compile kode program anda dengan gambar berikut ini.
 ![alt text](<hasil 3.4.png>)
 ### 3.4.3 Pertanyaan
 1. Dapatkah konstruktor berjumlah lebih dalam satu kelas? Jelaskan dengan contoh!
+
+    Jawab: konstruktor dapat bejumlah lebih dalam setu kelas. 
+    contoh : 
+    ```java
+        public Balok(int p, int l, int t){
+        panjang = p;
+        lebar = l;
+        tinggi = t;
+    }
+
+    public int hitungVolume(){
+        return panjang * lebar * tinggi;
+    }
+    ```
+    pada contoh tersebut terdapat 2 konstruktor yang pertama Balok(int p, int l, int t) dan yang kedua hitungVolume().
 2. Jika diketahui terdapat class Segitiga seperti berikut ini:
-Tambahkan konstruktor pada class Segitiga tersebut yang berisi parameter int a, int t
-yang masing-masing digunakan untuk mengisikan atribut alas dan tinggi.
+
+    ![alt text](<p2 3.4.png>)
+    Tambahkan konstruktor pada class Segitiga tersebut yang berisi parameter int a, int t yang masing-masing digunakan untuk mengisikan atribut alas dan tinggi.
+
+    Jawab: 
 3. Tambahkan method hitungLuas() dan hitungKeliling() pada class Segitiga
 tersebut. Asumsi segitiga adalah segitiga siku-siku. (Hint: Anda dapat menggunakan bantuan 
 library Math pada Java untuk mengkalkulasi sisi miring)
+    
+    Jawab:
 4. Pada fungsi main, buat array Segitiga sgArray yang berisi 4 elemen, isikan masing-masing 
 atributnya sebagai berikut:
 sgArray ke-0 alas: 10, tinggi: 4
 sgArray ke-1 alas: 20, tinggi: 10
 sgArray ke-2 alas: 15, tinggi: 6
 sgArray ke-3 alas: 25, tinggi: 10
+
+    Jawab:
 5. Kemudian menggunakan looping, cetak luas dan keliling dengan cara memanggil method 
 hitungLuas() dan hitungKeliling().
 
+    Jawab:
 ## 3.5 Latihan Praktikum
 **Waktu: 150 menit**
 1. Buatlah program yang dapat menghitung luas permukaan dan volume bangun ruang kerucut, 
