@@ -9,7 +9,7 @@ Setelah melakukan materi praktikum ini, mahasiswa mampu:
 2. Mahasiswa mampu menangkap logika tentang permasalahan array of object dalam Java
 3. Mahasiswa mampu menerapkan pembuatan array of object dalam Java
 ## 3.2 Percobaan 1: Membuat Array dari Object, Mengisi dan Menampilkan
-Waktu: 50 menit
+**Waktu: 50 menit**
 Didalam praktikum ini, kita akan mempraktekkan bagaimana membuat array dari object, 
 kemudian mengisi dan menampilkan array tersebut.
 ### 3.2.1 Langkah-langkah Percobaan
@@ -78,7 +78,7 @@ Jawab:
 Jawab: 
 
 ## 3.3 Percobaan 2: Menerima Input Isian Array Menggunakan Looping
-Waktu: 50 menit
+**Waktu: 50 menit**
 Pada praktikum ini kita akan mengubah hasil program dari praktikum 3.2 sehingga program dapat menerima input dan menggunakan looping untuk mengisikan atribut dari semua persegi yang ada di ppArray.
 
 ### 3.3.1 Langkah-langkah Percobaan
@@ -134,20 +134,65 @@ Contoh verifikasi hasil percobaan ini.
 pada ppArray[i] sekaligus ppArray[0]?Jelaskan !
 
 ## 3.4 Percobaan 3: Penambahan Operasi Matematika di Dalam Method
-Waktu: 50 menit
+**Waktu: 50 menit**
 Pada praktikum ini kita akan melakukan pengoperasian matematika beberapa atribut pada 
 masing-masing anggota array.
 ### 3.4.1 Langkah-langkah Percobaan
 1. Buat package baru “ArrayBalok”.
+
 2. Buat class Balok:
+![alt text](<langkah 2 3.4.png>)
+
+    ```java
+    public class Balok {
+        public int panjang;
+        public int lebar;
+        public int tinggi;
+
+        public Balok(int p, int l, int t){
+            panjang = p;
+            lebar = l;
+            tinggi = t;
+        }
+
+        public int hitungVolume(){
+            return panjang * lebar * tinggi;
+        }
+    }
+    ```
 3. Pada fungsi main yaitu pada class ArrayBalok, buat array Balok yang berisi 3 elemen:
+![alt text](<langkah 3 3.4.png>)
+    ```java
+    public class ArrayBalok {
+        public static void main(String[] args) {
+            Balok[] blArray = new Balok[3];
+        }
+    }
+    ```
 4. Kemudian tambahkan kode berikut ini untuk mengisi array blArray menggunakan konstruktor 
 dari class Balok:
+![alt text](<langkah 4 3.4.png>)
+    ```java
+            blArray[0] = new Balok(100, 30, 12);
+            blArray[1] = new Balok(120, 40, 15);
+            blArray[2] = new Balok(210, 50, 25);
+    ```
 5. Tampilkan semua volume balok tersebut dengan cara memanggil method hitungVolume() di 
 dalam looping seperti berikut ini:
+![alt text](<langkah 5 3.4.png>)
+    ```java
+            for (int i = 0; i < 3; i++) {
+                System.out.println("Volume balok ke " + i + " : " + blArray[i].hitungVolume());
+            }
+    ```
 6. Jalankan dan amati hasilnya.
-3.4.2 Verifikasi Hasil Percobaan
+
+    ![alt text](<hasil 3.4.png>)
+### 3.4.2 Verifikasi Hasil Percobaan
 Cocokkan hasil compile kode program anda dengan gambar berikut ini.
+![alt text](<verif 3.4.png>)
+
+![alt text](<hasil 3.4.png>)
 ### 3.4.3 Pertanyaan
 1. Dapatkah konstruktor berjumlah lebih dalam satu kelas? Jelaskan dengan contoh!
 2. Jika diketahui terdapat class Segitiga seperti berikut ini:
@@ -164,3 +209,28 @@ sgArray ke-2 alas: 15, tinggi: 6
 sgArray ke-3 alas: 25, tinggi: 10
 5. Kemudian menggunakan looping, cetak luas dan keliling dengan cara memanggil method 
 hitungLuas() dan hitungKeliling().
+
+## 3.5 Latihan Praktikum
+**Waktu: 150 menit**
+1. Buatlah program yang dapat menghitung luas permukaan dan volume bangun ruang kerucut, 
+limas segi empat sama sisi, dan bola. Buatlah 3 (tiga) class sesuai dengan jumlah jenis bangun 
+ruang. Buatlah satu main class untuk membuat array of objects yang menginputkan atribut-atribut yang ada menggunakan konstruktor semua bangun ruang tersebut. Dengan ketentuan,
+
+    ***a. Buat looping untuk menginputkan masing-masing atributnya, kemudian tampilkan 
+    luas permukaan dan volume dari tiap jenis bangun ruang tersebut.***
+
+    ***b. Pada kerucut, inputan untuk atribut hanya jari-jari dan sisi miring***
+
+    ***c. Pada limas segi empat sama sisi, inputan untuk atribut hanya panjang sisi alas dan 
+    tinggi limas***
+
+    ***d. Pada bola, inpuntan untuk atribut hanya jari-jari***
+2. Sebuah kampus membutuhkan program untuk menampilkan informasi mahasiswa berupa nama, 
+nim, jenis kelamin dan juga IPK mahasiswa. Program dapat menerima input semua informasi 
+tersebut, kemudian menampilkanya kembali ke user. Implementasikan program tersebut jika 
+dimisalkan terdapat 3 data mahasiswa yang tersedia. Contoh output program:
+
+    ![alt text](<soal lat.png>)
+3. Modifikasi program Latihan no.2 di atas, sehingga bisa digunakan untuk menghitung rata-rata IPK, 
+serta menampilkan data mahasiswa dengan IPK terbesar! (gunakan method untuk masing-masing 
+proses tersebut)
