@@ -277,11 +277,28 @@ Cocokkan hasil compile kode program anda dengan gambar berikut ini.
     Tambahkan konstruktor pada class Segitiga tersebut yang berisi parameter int a, int t yang masing-masing digunakan untuk mengisikan atribut alas dan tinggi.
 
     Jawab: 
+    ```java
+    public class Segitiga {
+    public static String hitungLuas;
+    public int alas;
+    public int tinggi;
+    }
+    ```
 3. Tambahkan method hitungLuas() dan hitungKeliling() pada class Segitiga
 tersebut. Asumsi segitiga adalah segitiga siku-siku. (Hint: Anda dapat menggunakan bantuan 
 library Math pada Java untuk mengkalkulasi sisi miring)
     
     Jawab:
+    ```java
+        public int hitungLuas(){
+        return alas * tinggi /2;
+    }
+
+    public double hitungKeliling(){
+        return alas + tinggi + Math.hypot(tinggi, alas);
+    }
+    ```
+
 4. Pada fungsi main, buat array Segitiga sgArray yang berisi 4 elemen, isikan masing-masing 
 atributnya sebagai berikut:
 sgArray ke-0 alas: 10, tinggi: 4
@@ -290,10 +307,25 @@ sgArray ke-2 alas: 15, tinggi: 6
 sgArray ke-3 alas: 25, tinggi: 10
 
     Jawab:
+    ```java
+    sgArray[0] = new Segitiga(10, 4);
+    sgArray[1] = new Segitiga(20, 10);
+    sgArray[2] = new Segitiga(15, 6);
+    sgArray[3] = new Segitiga(25, 10);
+    ```
+
 5. Kemudian menggunakan looping, cetak luas dan keliling dengan cara memanggil method 
 hitungLuas() dan hitungKeliling().
 
     Jawab:
+    ```java
+    for (int i = 0; i < sgArray.length; i++) {
+        System.out.println("Segitiga ke " + i);
+        System.out.println("Luas "+ sgArray[i].hitungLuas() + ", Keliling " + sgArray[i].hitungKeliling());
+    }
+    ```
+    ![alt text](<hasil segitiga.png>)
+
 ## 3.5 Latihan Praktikum
 **Waktu: 150 menit**
 1. Buatlah program yang dapat menghitung luas permukaan dan volume bangun ruang kerucut, 
