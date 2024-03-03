@@ -341,12 +341,290 @@ ruang. Buatlah satu main class untuk membuat array of objects yang menginputkan 
     tinggi limas***
 
     ***d. Pada bola, inpuntan untuk atribut hanya jari-jari***
+
+Class Bola
+
+        public class Bola {
+        public double jaribola;
+
+        public Bola(double jaribola){
+            this.jaribola = jaribola;
+        }
+
+        public double hitungVolumeBola() {
+            return (4/3) * Math.PI * Math.pow(jaribola, 3);
+        }
+
+        public double hitungLuasPermukaanBola() {
+            return 4 * Math.PI * Math.pow(jaribola, 2);
+        }
+    }
+
+Class Kerucut
+
+        public class Kerucut {
+        public int jari;
+        public int siring;
+
+        public Kerucut(int jk, int srk){
+            jari = jk;
+            siring = srk;
+        }
+
+        public double luasPermukaanKerucut(){
+            return (22/7 * jari * siring) + (22/7 * jari * jari);
+        }
+
+        public double volumeKerucut(){
+            return 22/7 * jari * jari * 10 /3 ;
+        }
+    }
+
+Class Limas
+
+        public class limas4sisi {
+        public double sisi;
+        public double tinggi;
+
+        public double luasLimas(double sisiAlas, double tinggiLimas, double tinggiSisi){
+            double luasAlas = sisiAlas * sisiAlas;
+            double luasSelimut = 4 * sisiAlas * tinggiSisi /2;
+            double luasPermukaan = luasAlas + luasSelimut;
+            return luasPermukaan;
+        }
+
+        public limas4sisi(double sisiLimas, double tinggiLimas){
+            sisi = sisiLimas;
+            tinggi = tinggiLimas;
+        }
+
+        public double volumeLimas(){
+            return (sisi * sisi) * tinggi /3;
+        }
+    }
+
+
+Main
+
+    import java.util.Scanner;
+
+    public class BangunRuang {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+
+            int jumlahBangunRuang;
+            System.out.print("Masukkan jumlah bangun ruang yang ingin dihitung: ");
+            jumlahBangunRuang = scanner.nextInt();
+
+            for (int i = 0; i < jumlahBangunRuang; i++) {
+                System.out.println("Bangun Ruang ke-" + (i + 1));
+
+                System.out.print("Pilih jenis bangun ruang (1. Kerucut, 2. Limas 4 Sisi, 3. Bola): ");
+                int jenisBangunRuang = scanner.nextInt();
+                scanner.nextLine(); 
+
+                switch (jenisBangunRuang) {
+                    case 1:
+                        System.out.print("Masukkan jari-jari kerucut: ");
+                        int jariKerucut = scanner.nextInt();
+                        System.out.print("Masukkan panjang sisi miring kerucut: ");
+                        int siringKerucut = scanner.nextInt();
+
+                        Kerucut kerucut = new Kerucut(jariKerucut, siringKerucut);
+
+                        System.out.println("Luas Permukaan Kerucut: " + kerucut.luasPermukaanKerucut());
+                        System.out.println("Volume Kerucut: " + kerucut.volumeKerucut());
+                        
+                        break;
+
+                    case 2:
+                        System.out.print("Masukkan panjang sisi alas limas: ");
+                        int sisiLimas = scanner.nextInt();
+                        System.out.print("Masukkan tinggi limas: ");
+                        int tinggiLimas = scanner.nextInt();
+
+                        limas4sisi limas4sisi = new limas4sisi(sisiLimas, tinggiLimas);
+                        
+
+                        System.out.println("Luas Permukaan Limas 4 Sisi: " + limas4sisi.luasLimas(sisiLimas, tinggiLimas, tinggiLimas));
+                        System.out.println("Volume Limas 4 Sisi: " + limas4sisi.volumeLimas());
+                        break;
+
+                    case 3:
+                        System.out.print("Masukkan jari-jari bola: ");
+                        double jariBola = scanner.nextDouble();
+
+                        Bola bola = new Bola(jariBola);
+                        System.out.println("Luas Permukaan Bola: " + bola.hitungLuasPermukaanBola());
+                        System.out.println("Volume Bola: " + bola.hitungVolumeBola());
+                        break;
+
+                    default:
+                        System.out.println("Jenis bangun ruang tidak valid.");
+                        break;
+                }
+            }
+        }
+    }
+
 2. Sebuah kampus membutuhkan program untuk menampilkan informasi mahasiswa berupa nama, 
 nim, jenis kelamin dan juga IPK mahasiswa. Program dapat menerima input semua informasi 
 tersebut, kemudian menampilkanya kembali ke user. Implementasikan program tersebut jika 
 dimisalkan terdapat 3 data mahasiswa yang tersedia. Contoh output program:
 
     ![alt text](<soal lat.png>)
+
+Class
+
+        package LatihanNo2;
+
+    public class mahasiswa {
+        public String nama, jenisKelamin;
+        public double ipk;
+        public int nim;
+    }
+
+
+
+Main
+
+    package LatihanNo2;
+    import java.util.Scanner;
+
+    public class mahasiswaMain {
+        public static void main(String[] args) {
+            Scanner input = new Scanner(System.in);
+            Scanner input2 = new Scanner(System.in);
+            Scanner input3 = new Scanner(System.in);
+            mahasiswa[] informasi = new mahasiswa[3];
+
+            for (int i = 0; i < informasi.length; i++) {
+                informasi[i] = new mahasiswa();
+                System.out.println("Masukkan data mahasiswa ke- " + (i+1));
+                System.out.print("Masukkan nama: ");
+                informasi[i].nama = input.nextLine();
+
+                System.out.print("Masukkan nim: ");
+                informasi[i].nim = input2.nextInt();
+
+                System.out.print("Masukkan jenis kelamin (L/P): ");
+                String jenisKelaminInput;
+                do {
+                    jenisKelaminInput = input.nextLine().toUpperCase();
+                    if (!(jenisKelaminInput.equals("L") || jenisKelaminInput.equals("P"))) {
+                        System.out.println("Input salah. Silakan masukkan 'L' untuk Laki-laki atau 'P' untuk Perempuan.");
+                    }
+                } while (!(jenisKelaminInput.equals("L") || jenisKelaminInput.equals("P")));
+                informasi[i].jenisKelamin = jenisKelaminInput;
+                
+                System.out.print("Masukkan IPK: ");
+                informasi[i].ipk = input3.nextInt();
+            }
+            input.close();
+            input2.close();
+            input3.close();
+
+            System.out.println("=======================================================");
+            for (int i = 0; i < informasi.length; i++) {
+                System.out.println("Data Mahasiswa ke- " + (i+1));
+                System.out.println("Nama: " + informasi[i].nama);
+                System.out.println("nim: " + informasi[i].nim);
+                System.out.println("Jenis Kelamin: " + informasi[i].jenisKelamin);
+                System.out.println("Nilai IPK: " + informasi[i].ipk);
+            }
+            System.out.println("=======================================================");
+        }
+    }
+
 3. Modifikasi program Latihan no.2 di atas, sehingga bisa digunakan untuk menghitung rata-rata IPK, 
 serta menampilkan data mahasiswa dengan IPK terbesar! (gunakan method untuk masing-masing 
 proses tersebut)
+
+Class
+
+    package LatihanNo3;
+
+    public class mahasiswa {
+        public String nama, jenisKelamin;
+        public double ipk;
+        public int nim;
+
+        public static double rataIPK(mahasiswa[] informasi) {
+            double sum = 0;
+            for (mahasiswa mhs : informasi) {
+                sum += mhs.ipk;
+            }
+            return sum / informasi.length;
+        }
+
+        public static mahasiswa tinggiIPK(mahasiswa[] informasi) {
+            mahasiswa highest = informasi[0];
+            for (int i = 1; i < informasi.length; i++) {
+                if (informasi[i].ipk > highest.ipk) {
+                    highest = informasi[i];
+                }
+            }
+            return highest;
+        }
+        
+    }
+
+Main
+
+    package LatihanNo3;
+    import java.util.Scanner;
+
+    public class mahasiswaMain {
+        public static void main(String[] args) {
+            Scanner input = new Scanner(System.in);
+            Scanner input2 = new Scanner(System.in);
+            Scanner input3 = new Scanner(System.in);
+            mahasiswa[] informasi = new mahasiswa[3];
+
+            for (int i = 0; i < informasi.length; i++) {
+                informasi[i] = new mahasiswa();
+                System.out.println("Masukkan data mahasiswa ke- " + (i+1));
+                System.out.print("Masukkan nama: ");
+                informasi[i].nama = input.nextLine();
+
+                System.out.print("Masukkan nim: ");
+                informasi[i].nim = input2.nextInt();
+
+                System.out.print("Masukkan jenis kelamin (L/P): ");
+                String jenisKelaminInput;
+                do {
+                    jenisKelaminInput = input.nextLine().toUpperCase();
+                    if (!(jenisKelaminInput.equals("L") || jenisKelaminInput.equals("P"))) {
+                        System.out.println("Input salah. Silakan masukkan 'L' untuk Laki-laki atau 'P' untuk Perempuan.");
+                    }
+                } while (!(jenisKelaminInput.equals("L") || jenisKelaminInput.equals("P")));
+                informasi[i].jenisKelamin = jenisKelaminInput;
+                
+                System.out.print("Masukkan IPK: ");
+                informasi[i].ipk = input3.nextInt();
+            }
+            input.close();
+            input2.close();
+            input3.close();
+
+            System.out.println("=======================================================");
+            for (int i = 0; i < informasi.length; i++) {
+                System.out.println("Data Mahasiswa ke- " + (i+1));
+                System.out.println("Nama: " + informasi[i].nama);
+                System.out.println("nim: " + informasi[i].nim);
+                System.out.println("Jenis Kelamin: " + informasi[i].jenisKelamin);
+                System.out.println("Nilai IPK: " + informasi[i].ipk);
+            }
+            System.out.println("=======================================================");
+
+            double averageIPK = mahasiswa.rataIPK(informasi);
+            System.out.println("Rata-rata IPK: " + averageIPK);        
+            mahasiswa tertinggi = mahasiswa.tinggiIPK(informasi);
+            System.out.println("Mahasiswa dengan IPK terbesar:");
+            System.out.println("Nama: " + tertinggi.nama);
+            System.out.println("nim: " + tertinggi.nim);
+            System.out.println("Jenis Kelamin: " + tertinggi.jenisKelamin);
+            System.out.println("Nilai IPK: " + tertinggi.ipk);
+            System.out.println("=======================================================");
+        }
+    }
