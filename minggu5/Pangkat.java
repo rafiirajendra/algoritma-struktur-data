@@ -3,10 +3,15 @@ package minggu5;
 public class Pangkat {
     public int nilai, pangkat;
 
-    int pangkatBF(int a, int n){
+    public Pangkat (int nilai, int pangkat){
+        this.nilai = nilai;
+        this.pangkat = pangkat;
+    }
+
+    int pangkatBF(){
         int hasil = 1;
-        for (int i = 0; i < n; i++) {
-            hasil *= a;
+        for (int i = 0; i < pangkat; i++) {
+            hasil *= nilai;
         }
         return hasil;
     }
@@ -15,7 +20,7 @@ public class Pangkat {
         if (n == 0) {
             return 1;
         } else {
-            if (n % 2 == 1) //bilangan ganjil 
+            if (n % 2 == 1)
             {
                 return (pangkatDC(a, n/2) * pangkatDC(a, n/2) * a);
             } else {

@@ -215,10 +215,88 @@ Pastikan output yang ditampilkan sudah benar seperti di bawah ini.
 
 ### 4.3.3 Pertanyaan
 1. Jelaskan mengenai perbedaan 2 method yang dibuat yaitu PangkatBF() dan PangkatDC()!
+    
+    Jawab: pada method PangkatBF() menghitung a^n dengan mengalikan a sebanyak n kali dalam loop. Sedangkan pada PangkatDC() dengan membagi masalah menjadi sub-problem yang lebih kecil. Jika n genap, a^n dipecah menjadi (a^(n/2))^2. Jika n ganjil, itu dipecah menjadi (a^(n/2))^2 * a. 
 2. Apakah tahap combine sudah termasuk dalam kode tersebut?Tunjukkan!
+
+    Jawab: tahap combine sudah termasuk dalam kode tersebut yang terdapat pada PangkatDC(). Berikut merupakan tahap combine yang terdapat pada PangkatDC():
+
+    ```java
+        return (pangkatDC(a, n/2) * pangkatDC(a, n/2) * a);
+        else {
+        return (pangkatDC(a, n/2) * pangkatDC(a, n/2));
+        }
+    ```
+
 3. Modifikasi kode program tersebut, anggap proses pengisian atribut dilakukan dengan konstruktor.
+
+    Jawab: 
+
+    ```java
+    public int nilai, pangkat;
+
+    public Pangkat (int nilai, int pangkat){
+        this.nilai = nilai;
+        this.pangkat = pangkat;
+    }
+
+    int pangkatBF(){
+        int hasil = 1;
+        for (int i = 0; i < pangkat; i++) {
+            hasil *= nilai;
+        }
+        return hasil;
+    }
+
+    int pangkatDC(int a, int n){
+        if (n == 0) {
+            return 1;
+        } else {
+            if (n % 2 == 1)
+            {
+                return (pangkatDC(a, n/2) * pangkatDC(a, n/2) * a);
+            } else {
+                return (pangkatDC(a, n/2) * pangkatDC(a, n/2));
+            }
+        }
+    }
+    ```
+
+
 4. Tambahkan menu agar salah satu method yang terpilih saja yang akan dijalankan menggunakan switch-case!
 
+    Jawab: 
+
+    ```java
+        System.out.println("============================");
+        System.out.println("Pilih Metode");
+        System.out.println("1. Brute Force");
+        System.out.println("Divide and Conquer");
+
+        int pilihan = sc.nextInt();
+
+        switch (pilihan) {
+            case 1:
+                System.out.println("HASIL PANGKAT - BRUTE FORCE ");
+                for (int i = 0; i < elemen; i++) {
+                    System.out.println(
+                            "Hasil dari " + png[i].nilai + " pangkat " + png[i].pangkat + " adalah " + png[i].pangkatBF()
+                    );
+                }
+                break;
+            case 2:
+                System.out.println("HASIL PANGKAT - DIVIDE AND CONQUER ");
+                for (int i = 0; i < elemen; i++) {
+                    System.out.println(
+                            "Hasil dari " + png[i].nilai + " pangkat " + png[i].pangkat + " adalah " + png[i].pangkatDC(png[i].nilai, png[i].pangkat)
+                    );
+                }
+                break;
+            default:
+                break;
+        }
+        sc.close();
+    ```
 ## 4.4 Menghitung Sum Array dengan Algoritma Brute Force dan Divide and Conquer
 Di dalam percobaan ini, kita akan mempraktekkan bagaimana proses divide, conquer, dan combine diterapkan pada studi kasus penjumlahan keuntungan suatu perusahaan dalam beberapa bulan.
 

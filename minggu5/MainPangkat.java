@@ -10,7 +10,7 @@ public class MainPangkat {
         
         Pangkat[] png = new Pangkat[elemen];
         for (int i = 0; i < elemen; i++) {
-            png[i] = new Pangkat();
+            png[i] = new Pangkat(12, 3);
             System.out.println("Masukkan nilai yang tidak dipangkatkan: ");
             int nilai = sc.nextInt();
             png[i].nilai = nilai;
@@ -19,26 +19,34 @@ public class MainPangkat {
             png[i].pangkat = pangkat;
         }
 
-        sc.close();
+        System.out.println("============================");
+        System.out.println("Pilih Metode");
+        System.out.println("1. Brute Force");
+        System.out.println("Divide and Conquer");
 
-        System.out.println("HASIL PANGKAT - BRUTE FORCE");
-        for (int i = 0; i < elemen; i++) {
-            System.out.println
-            ("Hasil dari "
-                    + png[i].nilai + " pangkat "
-                    + png[i].pangkat + " adalah "
-                    + png[i].pangkatBF(png[i].nilai, png[i].pangkat)
-            );
+        int pilihan = sc.nextInt();
+
+        switch (pilihan) {
+            case 1:
+                System.out.println("HASIL PANGKAT - BRUTE FORCE ");
+                for (int i = 0; i < elemen; i++) {
+                    System.out.println(
+                            "Hasil dari " + png[i].nilai + " pangkat " + png[i].pangkat + " adalah " + png[i].pangkatBF()
+                    );
+                }
+                break;
+            case 2:
+                System.out.println("HASIL PANGKAT - DIVIDE AND CONQUER ");
+                for (int i = 0; i < elemen; i++) {
+                    System.out.println(
+                            "Hasil dari " + png[i].nilai + " pangkat " + png[i].pangkat + " adalah " + png[i].pangkatDC(png[i].nilai, png[i].pangkat)
+                    );
+                }
+                break;
+            default:
+                break;
         }
-        System.out.println("HASIL PANGKAT - DIVIDE CONQUER");
-        for (int i = 0; i < elemen; i++) {
-            System.out.println(
-                "Hasil dari "
-                    + png[i].nilai + " pangkat "
-                    + png[i].pangkat + " adalah "
-                    + png[i].pangkatDC(png[i].nilai, png[i].pangkat)
-            );
-        }
+        sc.close();
     }
 
 }
