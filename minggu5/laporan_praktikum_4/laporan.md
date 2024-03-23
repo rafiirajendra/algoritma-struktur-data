@@ -104,8 +104,27 @@ Cocokkan hasil compile kode program anda dengan gambar berikut ini.
 
 ### 4.2.3 Pertanyaan
 1. Pada base line Algoritma Divide Conquer untuk melakukan pencarian nilai faktorial, jelaskan perbedaan bagian kode pada penggunaan if dan else!
+
+    Jawab: pada penggunaan if n == 1 ketika n mencapai 1, rekursi harus berhenti karena faktorial dari 1 adalah 1, sedangkan else jika nilai n != 1 maka nilai dari n akan dibagi menjadi sub-masalah yang lebih kecill. Untuk menghitung n!, metode ini mengalikan n dengan hasil dari (n-1)!.
+
 2. Apakah memungkinkan perulangan pada method faktorialBF() dirubah selain menggunakan for?Buktikan!
+
+    Jawab : Perulangan pada method faktorial BF() dapat dirubah menggunakan while, berikut perulangan menggunakan while:
+
+    ```java
+    int faktorialBF(int n){
+        int fakto = 1;
+        while (n > 0) {
+            fakto *= n;
+            n--;
+        }
+        return fakto;
+    }
+    ```
+
 3. Jelaskan perbedaan antara fakto *= i; dan int fakto = n * faktorialDC(n-1);
+
+    Jawab: untuk fakto *= i bertujuan untuk mengakumulasi hasil perkalian dari  1 hingga n, sehingga fakto akan berisi hasil faktorial dari n. Sedangkan fakto = n * faktorialDC(n-1) hasil perkalian dari n dan semua nilai yang lebih kecil dari n akan menghasilkan faktorial dari n.
 
 ## 4.3 Menghitung Hasil Pangkat dengan Algoritma Brute Force dan Divide and Conquer
 Pada praktikum ini kita akan membuat program class dalam Java. Untuk menghitung nilai pangkat suatu angka menggunakan 2 jenis algoritma, Brute Force dan Divide and Conquer.
@@ -215,6 +234,7 @@ Di dalam percobaan ini, kita akan mempraktekkan bagaimana proses divide, conquer
 Cocokkan hasil compile kode program anda dengan gambar berikut ini.
 
 ![alt text](<verif 4.4.2.png>)
+
 
 ### 4.4.3 Pertanyaan
 1. Mengapa terdapat formulasi return value berikut?Jelaskan!
