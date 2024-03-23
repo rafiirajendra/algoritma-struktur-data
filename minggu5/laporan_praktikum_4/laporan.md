@@ -302,19 +302,193 @@ Di dalam percobaan ini, kita akan mempraktekkan bagaimana proses divide, conquer
 
 ### 4.4.1 Langkah-langkah Percobaan
 1. Pada paket minggu5. Buat class baru yaitu class Sum. DI salam class tersebut terdapat beberapa atribut jumlah elemen array, array, dan juga total. Tambahkan pula konstruktor pada class Sum.
+
+```java
+    int elemen;
+    double keuntungan[], total;
+
+    Sum(int elemen){
+        this.elemen = elemen;
+        this.keuntungan = new double[elemen];
+        this.total = 0;
+    }
+```
 2. Tambahkan method TotalBF() yang akan menghitung total nilai array dengan cara iterative.
+
+```java
+    double totalBF(double arr[]){
+        for (int i = 0; i < elemen; i++) {
+            total = total + arr[i];
+        }
+        return total;
+    }
+```
+
 3. Tambahkan pula method TotalDC() untuk implementasi perhitungan nilai total array menggunakan algoritma Divide and Conquer
+
+```java
+    double totalDC(double arr[], int l, int r){
+        if (l == r) {
+            return arr[l];
+        }else if (l < r) {
+            int mid = (l+r) / 2;
+            double lsum = totalDC(arr, l, mid-l);
+            double rsum = totalDC(arr, mid+1, r);
+            return lsum + rsum;
+        }
+        return 0;
+    }
+```
+
 4. Buat class baru yaitu MainSum. Di dalam kelas ini terdapat method main. Pada method ini user dapat menuliskan berapa bulan keuntungan yang akan dihitung. Dalam kelas ini sekaligus dibuat instansiasi objek untuk memanggil atribut ataupun fungsi pada class Sum
+
+```java
+    Scanner sc = new Scanner(System.in);
+    System.out.println("===========================================================");
+    System.out.println("Program Menghitung Keuntungan Total (Satuan Juta. Misal 5.9)");
+    System.out.print("Masukkan Jumlah bulan : ");
+    int elm = sc.nextInt();
+```
+
 5. Karena yang akan dihitung adalah total nilai keuntungan, maka ditambahkan pula pada method main mana array yang akan dihitung. Array tersebut merupakan atribut yang terdapat di class Sum, maka dari itu dibutuhkan pembuatan objek Sum terlebih dahulu.
+
+```java
+       Sum sm = new Sum(elm);
+        System.out.println("===========================================================");
+        for (int i = 0; i < sm.elemen; i++) {
+            System.out.print("Masukkan untung bulan ke - " + (i+1) + " = ");
+            sm.keuntungan[i] = sc.nextDouble();
+        }
+```
+
 6. Tampilkan hasil perhitungan melalui objek yang telah dibuat untuk kedua cara yang ada(Brute Force dan Divide and Conquer)
+
+```java
+        System.out.println("============================================================");
+        System.out.println("Algoritma Brute Force");
+        System.out.println("Total keuntungan perusahaan selama " + sm.elemen + " bulan adalah = " + sm.totalBF(sm.keuntungan));
+        System.out.println("============================================================");
+        System.out.println("Algoritma Devide Conquer");
+        System.out.println("Total keuntungan perushaan selama " + sm.elemen + " bulan adalah = " + sm.totalDC(sm.keuntungan, 0 , sm.elemen-1));
+```
 
 ### 4.4.2 Verifikasi Hasil Percobaan
 Cocokkan hasil compile kode program anda dengan gambar berikut ini.
 
 ![alt text](<verif 4.4.2.png>)
 
+![alt text](<hasil 4.4.2.png>)
 
 ### 4.4.3 Pertanyaan
 1. Mengapa terdapat formulasi return value berikut?Jelaskan!
+![alt text](<Screenshot 2024-03-23 141245.png>)
+    Jawab: formulasi return lsum + rsum ini merupakan langkah untuk menggabungkan total dari dua bagian array yang terpecah menjadi bagian kiri dan kanan saat rekursi selesai.
+
 2. Kenapa dibutuhkan variable mid pada method TotalDC()?
+
+    Jawab: untuk menentukan titik tengah atau nilai tengah dari rentang array 
 3. Program perhitungan keuntungan suatu perusahaan ini hanya untuk satu perusahaan saja. Bagaimana cara menghitung sekaligus keuntungan beberapa bulan untuk beberapa perusahaan.(Setiap perusahaan bisa saja memiliki jumlah bulan berbeda-beda)? Buktikan dengan program!
+
+    Jawab: 
+    Sum
+    ```java
+    package minggu5;
+
+    public class Sum {
+    private int elemen;
+    private double keuntungan[], total;
+
+    public Sum(int elemen) {
+        this.elemen = elemen;
+        this.keuntungan = new double[elemen];
+        this.total = 0;
+    }
+
+    public void setKeuntungan(int index, double profit) {
+        this.keuntungan[index] = profit;
+    }
+
+    public int getElemen() {
+        return elemen;
+    }
+
+    public double totalBF() {
+        for (int i = 0; i < elemen; i++) {
+            total += keuntungan[i];
+        }
+        return total;
+    }
+
+    public double totalDC() {
+        return totalDC(0, elemen - 1);
+    }
+
+    private double totalDC(int l, int r) {
+        if (l == r) {
+            return keuntungan[l];
+        } else if (l < r) {
+            int mid = (l + r) / 2;
+            double lsum = totalDC(l, mid);
+            double rsum = totalDC(mid + 1, r);
+            return lsum + rsum;
+        }
+        return 0;
+    }
+    }
+    ```
+    MainSum
+    ```java
+    package minggu5;
+
+    import java.util.Scanner;
+
+    public class MainSum {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("===========================================================");
+            System.out.println("Program Menghitung Keuntungan Total (Satuan Juta. Misal 5.9)");
+            System.out.print("Masukkan Jumlah perusahaan: ");
+            int numCompanies = sc.nextInt();
+
+            Sum[] companies = new Sum[numCompanies];
+
+            for (int i = 0; i < numCompanies; i++) {
+                System.out.print("Masukkan Jumlah bulan untuk perusahaan ke-" + (i + 1) + ": ");
+                int numMonths = sc.nextInt();
+                companies[i] = new Sum(numMonths);
+                System.out.println("-----------------------------------------------------------");
+                System.out.println("Untuk Perusahaan ke-" + (i + 1) + ":");
+                for (int j = 0; j < numMonths; j++) {
+                    System.out.print("Masukkan keuntungan bulan ke-" + (j + 1) + ": ");
+                    double profit = sc.nextDouble();
+                    companies[i].setKeuntungan(j, profit);
+                }
+                System.out.println("-----------------------------------------------------------");
+            }
+
+            System.out.println("============================================================");
+            System.out.println("Total Keuntungan untuk Setiap Perusahaan");
+            System.out.println("============================================================");
+
+            for (int i = 0; i < numCompanies; i++) {
+                System.out.println("Perusahaan ke-" + (i + 1) + ":");
+                System.out.println("Algoritma Brute Force");
+                System.out.println("Total keuntungan perusahaan selama " + companies[i].getElemen() + " bulan adalah = " + companies[i].totalBF());
+                System.out.println("Algoritma Devide Conquer");
+                System.out.println("Total keuntungan perushaan selama " + companies[i].getElemen() + " bulan adalah = " + companies[i].totalDC());
+                System.out.println  ("============================================================");
+                }
+            }
+    }
+    ```
+## 4.5 Latihan Praktikum
+1. Sebuah showroom memiliki daftar mobil dengan data sesuai tabel di bawah ini
+![alt text](<latihan 1.png>)
+
+    Tentukan:
+    
+    a. top_acceleration tertinggi menggunakan Divide and Conquer!
+    
+    b. top_acceleration terendah menggunakan Divide and Conquer!
+    
+    c. Rata-rata top_power dari seluruh mobil menggunakan Brute Force!

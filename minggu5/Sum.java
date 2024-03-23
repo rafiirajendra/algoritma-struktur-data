@@ -1,29 +1,41 @@
 package minggu5;
 
 public class Sum {
-    int elemen;
-    double keuntungan[], total;
+    private int elemen;
+    private double keuntungan[], total;
 
-    Sum(int elemen){
+    public Sum(int elemen) {
         this.elemen = elemen;
         this.keuntungan = new double[elemen];
         this.total = 0;
     }
 
-    double totalBF(double arr[]){
+    public void setKeuntungan(int index, double profit) {
+        this.keuntungan[index] = profit;
+    }
+
+    public int getElemen() {
+        return elemen;
+    }
+
+    public double totalBF() {
         for (int i = 0; i < elemen; i++) {
-            total = total + arr[i];
+            total += keuntungan[i];
         }
         return total;
     }
 
-    double totalDC(double arr[], int l, int r){
+    public double totalDC() {
+        return totalDC(0, elemen - 1);
+    }
+
+    private double totalDC(int l, int r) {
         if (l == r) {
-            return arr[l];
-        }else if (l < r) {
-            int mid = (l+r) / 2;
-            double lsum = totalDC(arr, l, mid-l);
-            double rsum = totalDC(arr, mid+1, r);
+            return keuntungan[l];
+        } else if (l < r) {
+            int mid = (l + r) / 2;
+            double lsum = totalDC(l, mid);
+            double rsum = totalDC(mid + 1, r);
             return lsum + rsum;
         }
         return 0;

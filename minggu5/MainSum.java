@@ -1,4 +1,5 @@
 package minggu5;
+
 import java.util.Scanner;
 
 public class MainSum {
@@ -6,21 +7,36 @@ public class MainSum {
         Scanner sc = new Scanner(System.in);
         System.out.println("===========================================================");
         System.out.println("Program Menghitung Keuntungan Total (Satuan Juta. Misal 5.9)");
-        System.out.print("Masukkan Jumlah bulan : ");
-        int elm = sc.nextInt();
+        System.out.print("Masukkan Jumlah perusahaan: ");
+        int numCompanies = sc.nextInt();
 
-        Sum sm = new Sum(elm);
-        System.out.println("===========================================================");
-        for (int i = 0; i < sm.elemen; i++) {
-            System.out.print("Masukkan untung bulan ke - " + (i+1) + " = ");
-            sm.keuntungan[i] = sc.nextDouble();
+        Sum[] companies = new Sum[numCompanies];
+
+        for (int i = 0; i < numCompanies; i++) {
+            System.out.print("Masukkan Jumlah bulan untuk perusahaan ke-" + (i + 1) + ": ");
+            int numMonths = sc.nextInt();
+            companies[i] = new Sum(numMonths);
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Untuk Perusahaan ke-" + (i + 1) + ":");
+            for (int j = 0; j < numMonths; j++) {
+                System.out.print("Masukkan keuntungan bulan ke-" + (j + 1) + ": ");
+                double profit = sc.nextDouble();
+                companies[i].setKeuntungan(j, profit);
+            }
+            System.out.println("-----------------------------------------------------------");
         }
 
         System.out.println("============================================================");
-        System.out.println("Algoritma Brute Force");
-        System.out.println("Total keuntungan perusahaan selama " + sm.elemen + " bulan adalah = " + sm.totalBF(sm.keuntungan));
+        System.out.println("Total Keuntungan untuk Setiap Perusahaan");
         System.out.println("============================================================");
-        System.out.println("Algoritma Devide Conquer");
-        System.out.println("Total keuntungan perushaan selama " + sm.elemen + " bulan adalah = " + sm.totalDC(sm.keuntungan, 0 , sm.elemen-1));
+
+        for (int i = 0; i < numCompanies; i++) {
+            System.out.println("Perusahaan ke-" + (i + 1) + ":");
+            System.out.println("Algoritma Brute Force");
+            System.out.println("Total keuntungan perusahaan selama " + companies[i].getElemen() + " bulan adalah = " + companies[i].totalBF());
+            System.out.println("Algoritma Devide Conquer");
+            System.out.println("Total keuntungan perushaan selama " + companies[i].getElemen() + " bulan adalah = " + companies[i].totalDC());
+            System.out.println("============================================================");
+        }
     }
 }
