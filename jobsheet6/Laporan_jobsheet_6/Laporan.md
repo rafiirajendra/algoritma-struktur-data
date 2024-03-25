@@ -274,7 +274,7 @@ dengan cara descending
         for (int i = 1; i < listMahasiswa.length; i++) {
             Mahasiswa tmp = listMahasiswa[i];
             int j = i;
-            while (j > 0 && listMahasiswa[j-1].ipk < tmp.ipk) { // ubah operator '>' menjadi '<'
+            while (j > 0 && listMahasiswa[j-1].ipk < tmp.ipk) {
                 listMahasiswa[j] = listMahasiswa[j-1];
                 j--;
             }
@@ -295,4 +295,6 @@ Buatlah proses sorting data untuk kedua filter tersebut dengan menggunakan algor
 bubble sort dan selection sort.
 
     ![alt text](<soal latihan.png>)
-
+    
+    ![alt text](<Hasil latihan no 1.png>)
+    ![alt text](<hasil latihan no 2.png>)

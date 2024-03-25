@@ -1,7 +1,7 @@
 package jobsheet6;
 
 public class HotelService {
-    Hotel[] rooms = new Hotel[5];
+    Hotel[] rooms = new Hotel[6];
     int idx;
 
     void tambah (Hotel H){
@@ -14,33 +14,37 @@ public class HotelService {
     }
 
     void tampilAll (){
-        for(Hotel H : rooms){
-            H.tampil();
-            System.out.println("------------------------------");
+        for (int i = 0; i < idx; i++) { 
+            if (rooms[i] != null) { 
+                rooms[i].tampil();
+                System.out.println("------------------------------");
+            }
         }
     }
 
     void bubbleSort(){
-        for (int i = 0; i < rooms.length; i++) {
-            for (int j = 1; j < rooms.length-1; j++) {
-                if (rooms[j].harga > rooms[j-1].harga) {
-                    Hotel tmp = rooms[j];
-                    rooms[j] = rooms[j-1];
-                    rooms[j-1] = tmp;
+        for (int i = 0; i < rooms.length - 1; i++) {
+            for (int j = 0; j < rooms.length - i - 1; j++) {
+                if (rooms[j] != null && rooms[j + 1] != null && rooms[j].harga > rooms[j + 1].harga) {
+                    Hotel temp = rooms[j];
+                    rooms[j] = rooms[j + 1];
+                    rooms[j + 1] = temp;
                 }
             }
         }
     }
 
     void selectionSort(){
-        for (int i = 1; i < rooms.length; i++) {
-            Hotel tmp = rooms[i];
-            int j = i;
-            while (j > 0 && rooms[j-1].bintang < tmp.bintang) { // ubah operator '>' menjadi '<'
-                rooms[j] = rooms[j-1];
-                j--;
+        for (int i = 0; i < idx - 1; i++) {
+            int maxIdx = i;
+            for (int j = i + 1; j < idx; j++) {
+                if (rooms[j].bintang > rooms[maxIdx].bintang) { 
+                    maxIdx = j;
+                }
             }
-            rooms[j] = tmp;
+            Hotel temp = rooms[maxIdx];
+            rooms[maxIdx] = rooms[i];
+            rooms[i] = temp;
         }
     }
 }
