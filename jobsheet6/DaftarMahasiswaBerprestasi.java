@@ -47,15 +47,15 @@ public class DaftarMahasiswaBerprestasi {
         }
     }
 
-void insertionSort(){
-    for (int i = 1; i < listMahasiswa.length; i++) {
-        Mahasiswa tmp = listMahasiswa[i];
-        int j = i;
-        while (j > 0 && listMahasiswa[j-1].ipk < tmp.ipk) { // ubah operator '>' menjadi '<'
-            listMahasiswa[j] = listMahasiswa[j-1];
-            j--;
+    void insertionSort(){
+        for (int i = 1; i < listMahasiswa.length; i++) {
+            Mahasiswa tmp = listMahasiswa[i];
+            int j = i;
+            while (j > 0 && listMahasiswa[j-1].ipk < tmp.ipk) { // ubah operator '>' menjadi '<'
+                listMahasiswa[j] = listMahasiswa[j-1];
+                j--;
+            }
+            listMahasiswa[j] = tmp;
         }
-        listMahasiswa[j] = tmp;
     }
-}
 }
