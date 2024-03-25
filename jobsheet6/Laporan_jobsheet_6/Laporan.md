@@ -166,6 +166,7 @@ public class Main {
 
 ### 5.2.2 Verifikasi Hasil Percobaan
 Cocokan hasilnya dengan yang terdapat pada tampilan di bawah ini
+
 ![alt text](<verif 5.2.2.png>)
 
 ![alt text](<verif 5.2.21.png>)
