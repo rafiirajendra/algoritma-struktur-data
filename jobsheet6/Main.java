@@ -1,4 +1,4 @@
-package minggu6;
+package jobsheet6;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,6 +21,14 @@ public class Main {
 
         System.out.println("Data mahasiswa setelah sorting = ");
         list.bubbleSort();
+        list.tampil();
+
+        System.out.println("Data mahasiswa setelah sorting asc berdasarkan ipk");
+        list.selectionSort();
+        list.tampil();
+
+        System.out.println("Data mahasiswa setelah sorting asc berdasarkan ipk");
+        list.insertionSort();
         list.tampil();
     }
 }
