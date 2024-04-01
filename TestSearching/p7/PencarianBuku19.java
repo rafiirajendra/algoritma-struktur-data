@@ -1,7 +1,7 @@
 package p7;
 
 public class PencarianBuku19 {
-    Buku19 listBk[] = new Buku19[2];
+    Buku19 listBk[] = new Buku19[5];
     int idx;
 
     void tambah(Buku19 m){

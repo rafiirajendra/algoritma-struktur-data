@@ -8,7 +8,7 @@ public class BukuMain19 {
         Scanner s1 = new Scanner(System.in);
     
         PencarianBuku19 data = new PencarianBuku19();
-        int jumBuku = 2;
+        int jumBuku = 5;
 
         System.out.println("-------------------------------------------------------------------");
         System.out.println("MASUKKAN DATA BUKU SECARA URUT DARI KODE BUKU TERKECIL: ");
