@@ -8,7 +8,7 @@ public class BukuMain19 {
         Scanner s1 = new Scanner(System.in);
     
         PencarianBuku19 data = new PencarianBuku19();
-        int jumBuku = 5;
+        int jumBuku = 2;
 
         System.out.println("-------------------------------------------------------------------");
         System.out.println("MASUKKAN DATA BUKU SECARA URUT DARI KODE BUKU TERKECIL: ");
@@ -44,6 +44,8 @@ public class BukuMain19 {
         int posisi = data.FindSeqSearch(cari);
         data.Tampilposisi(cari, posisi);
         
+        data.TampilData(cari, posisi);
+
         s.close();
         s1.close();
     }
