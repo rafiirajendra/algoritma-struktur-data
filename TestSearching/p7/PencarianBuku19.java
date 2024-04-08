@@ -1,7 +1,7 @@
 package p7;
 
 public class PencarianBuku19 {
-    Buku19 listBk[] = new Buku19[2];
+    Buku19 listBk[] = new Buku19[5];
     int idx;
 
     void tambah(Buku19 m){
@@ -20,14 +20,12 @@ public class PencarianBuku19 {
     }
 
     public int FindSeqSearch(int cari){
-        int posisi = 0;
+        int posisi = -1;
         for (int j = 0; j < listBk.length; j++) {
             if (listBk[j].kodeBuku == cari) {
-                j = posisi;
-            } else {
-                posisi = -1;
+                posisi = j;
+                break;
             }
-            break;
         } 
         return posisi;
     }
@@ -50,5 +48,30 @@ public class PencarianBuku19 {
         } else {
             System.out.println("data  " + x + " tidak ditemukan");
         }
+    }
+
+    public int FindBinarySearch(int cari, int left, int right){
+        int mid;
+
+        if (left <= right) {
+            mid = (left + right) / 2;
+            if (cari == listBk[mid].kodeBuku) {
+                return mid;
+            } else if (listBk[mid].kodeBuku > cari) {
+                return FindBinarySearch(cari, left, mid-1);
+            } else {
+                return FindBinarySearch(cari, mid+1, right);
+            }
+        } else {
+            return -1;
+        }
+    }
+    public Buku19 FindBuku(int cari){
+        for (int j = 0; j < listBk.length; j++) {
+            if (listBk[j].kodeBuku == cari) {
+                return listBk[j];
+            }
+        }
+        return null;
     }
 }

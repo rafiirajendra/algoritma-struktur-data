@@ -1,18 +1,22 @@
 package p7;
 
 public class Buku19 {
-    int kodeBuku, tahunTerbit, stock ;
+    static Buku19[] listBuku = new Buku19[5]; 
+    static int jumlahBuku = 0;
+    int kodeBuku, tahunTerbit, stock;
     String judulBuku, pengarang;
-    
-    public Buku19(int kodeBuku, int tahunTerbit, int stock, String judulBuku, String pengarang){
+
+    public Buku19(int kodeBuku, int tahunTerbit, int stock, String judulBuku, String pengarang) {
         this.judulBuku = judulBuku;
         this.kodeBuku = kodeBuku;
         this.tahunTerbit = tahunTerbit;
         this.stock = stock;
         this.pengarang = pengarang;
+        Buku19.listBuku[jumlahBuku] = this; 
+        jumlahBuku++;
     }
 
-    void tampilDataBuku(){
+    void tampilDataBuku() {
         System.out.println("===========================");
         System.out.println("Kode Buku: " + kodeBuku);
         System.out.println("Judul Buku: " + judulBuku);

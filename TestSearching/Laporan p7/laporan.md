@@ -212,3 +212,211 @@ Verifikasi hasil pencarian :
 14. Buatlah method TampilData bertipe void pada class PencarianBukuNoAbsen dan 
 tambahkan isi dari method TampilData.
 
+```java
+    public void TampilData(int x, int pos){
+        if (pos != -1) {
+            System.out.println("Kode Buku \t : " + x);
+            System.out.println("Judul \t\t : " + listBk[pos].judulBuku);
+            System.out.println("Tahun Terbit \t : " + listBk[pos].tahunTerbit);
+            System.out.println("Pengarang \t : " + listBk[pos].pengarang);
+            System.out.println("Stock \t\t : " + listBk[pos].stock);
+        } else {
+            System.out.println("data  " + x + " tidak ditemukan");
+        }
+    }
+```
+
+15. Di dalam method main(), Lakukan pemanggilan method TampilData dari class 
+PencarianMhs.
+
+```java
+data.TampilData(cari, posisi);
+```
+
+16. Jalankan dan amati hasilnya.
+
+### 6.2.2. Verifikasi Hasil Percobaan
+
+Cocokkan hasil kode program anda dengan gambar berikut ini. Jika hasil belum cocok, perbaiki kode 
+program Anda!
+
+Jika data ditemukan:
+
+![alt text](<verif 6.2.2.png>)
+
+Jika data tidak ditemukan :
+
+![alt text](<verif 6.2.21.png>)
+
+### 6.2.3. Pertanyaan
+1. Jelaskan fungsi break yang ada pada method FindSeqSearch!
+    
+    Jawab: Fungsi break yang terdapat pada method FindSeqSearch berfungsi untuk menghentikan perulangan for apabila elemen yang dicari sudah ditemukan dan memastikan nilai yang dikembalikan adalah posisi elemen yang dicari atau -1 elemen tidak ditemukan.
+2. Jika Data Kode Buku yang dimasukkan tidak terurut dari kecil ke besar. Apakah program masih dapat berjalan? Apakah hasil yang dikeluarkan benar? Tunjukkan hasil screenshoot untuk bukti dengan kode Buku yang acak. Jelaskan Mengapa hal tersebut bisa terjadi?
+
+    Jawab: Program masih dapat berjalan hal ini terjadi dikarenakan proses seqeuential search tidak memerlukan data yang terurut.
+
+    ![alt text](<jawab pertanyaan 6.3.2.png>)
+
+    ![alt text](<jawab pertanyaan 6.3.22.png>)
+
+    ![alt text](<jawab pertanyaan 6.3.23.png>)
+
+
+3. Buat method baru dengan nama FindBuku menggunakan konsep sequential search dengan tipe 
+method dari FindBuku adalah BukuNoAbsen. Sehingga Anda bisa memanggil method 
+tersebut pada class BukuMain seperti gambar berikut :
+
+    ![alt text](<pertanyaan 6.2.3.png>)
+
+## 6.3. Searching / Pencarian Menggunakan Binary Search
+### 6.3.1. Langkah-langkah Percobaan Binary Search
+1. Pada percobaan 6.2.1 (sequential search) tambahkan method FindBinarySearch bertipe 
+integer pada class PencarianBukuNoAbsen. Kemudian Deklarasikan isi method 
+FindBinarySearch dengan algoritma pencarian data menggunakan teknik binary searching.
+
+    ![alt text](6.3.11.png)
+2. Panggil method FindBinarySearch di kelas BukuMainNoAbsen. Kemudia panggil
+method tampilposisi dan tampilData
+
+    ![alt text](6.3.12.png)
+3. Jalankan dan amati hasilnya.
+
+### 6.3.2. Verifikasi Hasil Percobaan
+Cocokkan hasil kode program anda dengan gambar berikut ini. Jika hasil belum cocok, perbaiki kode 
+program Anda!
+hasil kode yang ditampilkan berikut ini adalah hasil pencarian dengan menampilkan index dan data 
+yang dicari. Hasil running penambahan data dan menampilkan data dapat anda lakukan seperti pada 
+percobaan 6.2.1 langkah Nomor 13.
+
+![alt text](<verif 6.3.2.png>)
+
+6.3.3. Pertanyaan
+1. Tunjukkan pada kode program yang mana proses divide dijalankan!
+2. Tunjukkan pada kode program yang mana proses conquer dijalankan!
+4. Jika data Kode Buku yang dimasukkan tidak urut. Apakah program masih dapat berjalan? Mengapa 
+demikian! Tunjukkan hasil screenshoot untuk bukti dengan kode Buku yang acak. Jelaskan 
+Mengapa hal tersebut bisa terjadi? 
+3. Jika Kode Buku yang dimasukkan dari Kode Buku terbesar ke terkecil (missal : 20215, 20214, 
+20212, 20211, 20210) dan elemen yang dicari adalah 20210. Bagaimana hasil dari binary search? 
+Apakah sesuai? Jika tidak sesuai maka ubahlah kode program binary seach agar hasilnya sesuai!
+
+## 6.4. Percobaan Pengayaan Divide and Conquer
+### 6.4.1. Langkah-langkah Percobaan Merge Sort
+1. Buatlah Package baru didalam package P5 dengan nama MergeSortTest
+2. Tambahkan class MergeSortingNoAbsen pada package tersebut
+3. Pada class MergeSortingNoAbsen buatlah method mergeSort yang menerima parameter 
+data array yang akan diurutkan
+
+    ```java
+        public void mergeSort(int[] data) {
+        sort(data, 0, data.length - 1);
+    }
+    ```
+
+4. Buatlah method merge untuk melakukan proses penggabungan data dari bagian kiri dan kanan.
+
+    ```java
+    public void merge(int[] data, int left, int middle, int right) {
+    }
+    ```
+
+5. Implementasikan proses merge sebagai berikut. 
+
+    ```java
+        public void merge(int[] data, int left, int middle, int right) {
+        int[] temp = new int[data.length];
+        for (int i = left; i <= right; i++) {
+            temp[i] = data[i];
+        }
+        int a = left;
+        int b = middle + 1;
+        int c = left;
+
+        while (a <= middle && b <= right) {
+            if (temp[a] < temp[b]) {
+                data[c] = temp[a];
+                a++;
+            } else {
+                data[c] = temp[b];
+                b++;
+            }
+            c++;
+        }
+
+        int s = middle - a;
+        for (int i = 0; i <= s; i++) {
+            data[c + i] = temp[a + i];
+        }
+    }
+    ```
+
+6. Buatlah method sort
+
+    ```java
+    public void sort(int data[], int left, int right) {
+    }
+    ```
+
+7. Implementasikan kode berikut pada method sort
+
+    ```java
+        public void sort(int data[], int left, int right) {
+        if (left < right) {
+            int middle = (left + right) / 2;
+            sort(data, left, middle);
+            sort(data, middle + 1, right);
+            merge(data, left, middle, right);
+        }
+    }
+    ```
+
+8. Pada method mergeSort, panggil method sort dengan parameter data yang ingin diurutkan 
+serta range data awal sampai dengan akhir.
+
+9. Tambahkan method printArray
+
+    ```java
+        public void printArray(int arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+    ```
+
+10. Sebagai langkah terakhir, deklarasikan data yang akan diurutkan kemudian panggil proses 
+sorting pada class MergeSortMainNoAbsen. Tambahkan fungsi main pada kelas tersebut, 
+kemudian tuliskan kode berikut didalam fungsi main.
+
+    ```java
+        public static void main(String[] args) {
+        int data[] = {10,40,30,50,70,20,100,90};
+        System.out.println("sorting dengan merge sort");
+        MergeSorting19 mSort = new MergeSorting19();
+        System.out.println("data awal");
+        mSort.printArray(data);
+        mSort.mergeSort(data);
+        System.out.println("setelah diurutkan");
+        mSort.printArray(data);
+    }
+    ```
+
+### 6.4.2. Verifikasi Hasil Percobaan
+Cocokkan hasil compile kode program anda dengan gambar berikut ini. 
+![alt text](<mencocok hasil verif 6.4.2.png>)
+![alt text](<hasil verif 6.4.2.png>)
+
+## 6.5. Latihan Praktikum
+1. Modifikasi percobaan searching diatas dengan ketentuan berikut ini
+- Ubah tipe data dari kode Buku yang awalnya int menjadi String
+- Tambahkan method untuk pencarian kode Buku (bertipe data String) dengan menggunakan 
+sequential search dan binary search.
+2. Modifikasi percobaan searching diatas dengan ketentuan berikut ini
+- Tambahkan method pencarian judul buku menggunakan sequential search dan binary 
+search. Sebelum dilakukan searching dengan binary search data harus dilakukan pengurutan 
+dengan menggunakan algoritma Sorting (bebas pilih algoritma sorting apapun)! Sehingga 
+ketika input data acak, maka algoritma searching akan tetap berjalan
+- Buat aturan untuk mendeteksi hasil pencarian judul buku yang lebih dari 1 hasil dalam 
+bentuk kalimat peringatan! Pastikan algoritma yang diterapkan sesuai dengan kasus yang 
+diberikan!
