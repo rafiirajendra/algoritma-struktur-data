@@ -3,10 +3,10 @@ package p7.TestSearching;
 public class Buku19 {
     static Buku19[] listBuku = new Buku19[5]; 
     static int jumlahBuku = 0;
-    int kodeBuku, tahunTerbit, stock;
-    String judulBuku, pengarang;
+    int tahunTerbit, stock;
+    String judulBuku, pengarang, kodeBuku;
 
-    public Buku19(int kodeBuku, int tahunTerbit, int stock, String judulBuku, String pengarang) {
+    public Buku19(String kodeBuku, int tahunTerbit, int stock, String judulBuku, String pengarang) {
         this.judulBuku = judulBuku;
         this.kodeBuku = kodeBuku;
         this.tahunTerbit = tahunTerbit;

@@ -17,7 +17,7 @@ public class BukuMain19 {
         for (int i = 0; i < jumBuku; i++) {
             System.out.println("---------------------");
             System.out.print("Kode Buku \t : ");
-            int kodeBuku = s.nextInt();            
+            String kodeBuku = s1.nextLine();            
             System.out.print("Judul Buku \t : ");
             String judulBuku = s1.nextLine();
             System.out.print("Tahun Terbit \t : ");
