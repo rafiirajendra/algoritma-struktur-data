@@ -269,37 +269,155 @@ tersebut pada class BukuMain seperti gambar berikut :
 
     ![alt text](<pertanyaan 6.2.3.png>)
 
+    ```java
+        public Buku19 FindBuku(int cari){
+        for (int j = 0; j < listBk.length; j++) {
+            if (listBk[j].kodeBuku == cari) {
+                return listBk[j];
+            }
+        }
+        return null;
+    }
+    ```
+
 ## 6.3. Searching / Pencarian Menggunakan Binary Search
 ### 6.3.1. Langkah-langkah Percobaan Binary Search
 1. Pada percobaan 6.2.1 (sequential search) tambahkan method FindBinarySearch bertipe 
 integer pada class PencarianBukuNoAbsen. Kemudian Deklarasikan isi method 
 FindBinarySearch dengan algoritma pencarian data menggunakan teknik binary searching.
 
-    ![alt text](6.3.11.png)
+    ```java
+        public int FindBinarySearch(int cari, int left, int right){
+        int mid;
+
+        if (left <= right) {
+            mid = (left + right) / 2;
+            if (cari == listBk[mid].kodeBuku) {
+                return mid;
+            } else if (listBk[mid].kodeBuku > cari) {
+                return FindBinarySearch(cari, left, mid-1);
+            } else {
+                return FindBinarySearch(cari, mid+1, right);
+            }
+        } else {
+            return -1;
+        }
+    }
+    ```
+
 2. Panggil method FindBinarySearch di kelas BukuMainNoAbsen. Kemudia panggil
 method tampilposisi dan tampilData
 
-    ![alt text](6.3.12.png)
+    ```java
+        System.out.println("==============================");
+        System.out.println("MENGGUNAKAN BINARY SEARCH");
+        posisi = data.FindBinarySearch(cari, 0, jumBuku - 1);
+        data.Tampilposisi(cari, posisi);
+        data.TampilData(cari, posisi);
+    ```
+    
 3. Jalankan dan amati hasilnya.
 
 ### 6.3.2. Verifikasi Hasil Percobaan
-Cocokkan hasil kode program anda dengan gambar berikut ini. Jika hasil belum cocok, perbaiki kode 
-program Anda!
-hasil kode yang ditampilkan berikut ini adalah hasil pencarian dengan menampilkan index dan data 
-yang dicari. Hasil running penambahan data dan menampilkan data dapat anda lakukan seperti pada 
-percobaan 6.2.1 langkah Nomor 13.
+Cocokkan hasil kode program anda dengan gambar berikut ini. Jika hasil belum cocok, perbaiki kode program Anda! hasil kode yang ditampilkan berikut ini adalah hasil pencarian dengan menampilkan index dan data yang dicari. Hasil running penambahan data dan menampilkan data dapat anda lakukan seperti pada percobaan 6.2.1 langkah Nomor 13.
 
 ![alt text](<verif 6.3.2.png>)
 
-6.3.3. Pertanyaan
+### 6.3.3. Pertanyaan
 1. Tunjukkan pada kode program yang mana proses divide dijalankan!
+
+    Jawab: proses divide dijalankan pada kode program berikut ditunjukkan pada mid = (left + right) / 2
+
+    ```java
+    if (left <= right) {
+            mid = (left + right) / 2;
+            if (cari == listBk[mid].kodeBuku) {
+                return mid;
+            } else if (listBk[mid].kodeBuku > cari) {
+                return FindBinarySearch(cari, left, mid-1);
+            } else {
+                return FindBinarySearch(cari, mid+1, right);
+            }
+        } else {
+            return -1;
+        }
+    ```
+
 2. Tunjukkan pada kode program yang mana proses conquer dijalankan!
-4. Jika data Kode Buku yang dimasukkan tidak urut. Apakah program masih dapat berjalan? Mengapa 
-demikian! Tunjukkan hasil screenshoot untuk bukti dengan kode Buku yang acak. Jelaskan 
-Mengapa hal tersebut bisa terjadi? 
-3. Jika Kode Buku yang dimasukkan dari Kode Buku terbesar ke terkecil (missal : 20215, 20214, 
+    
+    Jawab: proses conquer dijalankan pada kode program berikut ditunjukkan pada
+
+
+    ```java
+            if (cari == listBk[mid].kodeBuku) {
+                return mid;
+            } else if (listBk[mid].kodeBuku > cari) {
+                return FindBinarySearch(cari, left, mid-1);
+            } else {
+                return FindBinarySearch(cari, mid+1, right);
+            }
+    ```
+
+3. Jika data Kode Buku yang dimasukkan tidak urut. Apakah program masih dapat berjalan? Mengapa demikian! Tunjukkan hasil screenshoot untuk bukti dengan kode Buku yang acak. Jelaskan Mengapa hal tersebut bisa terjadi? 
+
+    Jawab: jika memasukkan data kode buku secara tidak urut program akan berjalan tetapi pada proses binary search tidak bisa berjalan karena pada proses binary search dibutuhkan data yang sudah terurut.
+
+    ![alt text](<jawab pertanyaan 6.3.3 no 3.png>)
+4. Jika Kode Buku yang dimasukkan dari Kode Buku terbesar ke terkecil (missal : 20215, 20214, 
 20212, 20211, 20210) dan elemen yang dicari adalah 20210. Bagaimana hasil dari binary search? 
 Apakah sesuai? Jika tidak sesuai maka ubahlah kode program binary seach agar hasilnya sesuai!
+
+    Jawab: hasil pada binary search tidak sesuai
+
+    ![alt text](<jawab pertanyaan 6.3.3 no 4.png>)
+
+    Kode program yang diubah pada class PencarianBuku19
+
+    ```java
+     public int FindBinarySearch(int cari, int left, int right) {
+        bubbleSortBuku();
+        int mid;
+        if (right >= left) {
+            mid = (left + right) / 2;
+            if (listBk[mid].kodeBuku == cari) {
+                return mid;
+            } else if (listBk[mid].kodeBuku > cari) {
+                return FindBinarySearch(cari, left, mid - 1);
+            } else {
+                return FindBinarySearch(cari, mid + 1, right);
+            }
+        }
+        return -1;
+    }
+
+    void bubbleSortBuku() {
+        for (int i = 0; i < listBk.length - 1; i++) {
+            for (int j = 1; j < listBk.length - i; j++) {
+                if (listBk[j].kodeBuku < listBk[j - 1].kodeBuku) {
+                    Buku19 tmp = listBk[j];
+                    listBk[j] = listBk[j - 1];
+                    listBk[j - 1] = tmp;
+                }
+            }
+        }
+    }
+    ```
+    Kode program yang diubah pada class BukuMain19
+
+    ```java
+            System.out.println("==============================");
+        System.out.println("MENGGUNAKAN BINARY SEARCH");
+        data.bubbleSortBuku();
+        posisi = data.FindBinarySearch(cari, 0, jumBuku - 1);
+        data.Tampilposisi(cari, posisi);
+        data.TampilData(cari, posisi);
+    ```
+
+    Output setelah kode program diubah
+
+    ![alt text](<jawab pertanyaan 6.3.3 no41.png>)
+
+    Setelah mengubah kode program pada class PencarianBuku19 dan BukuMain19 maka hasilnya sudah sesuai.
 
 ## 6.4. Percobaan Pengayaan Divide and Conquer
 ### 6.4.1. Langkah-langkah Percobaan Merge Sort

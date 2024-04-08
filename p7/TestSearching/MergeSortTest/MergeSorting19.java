@@ -1,4 +1,4 @@
-package p7.MergeSortTest;
+package p7.TestSearching.MergeSortTest;
 
 public class MergeSorting19 {
  

@@ -1,4 +1,4 @@
-package p7;
+package p7.TestSearching;
 
 public class PencarianBuku19 {
     Buku19 listBk[] = new Buku19[5];
@@ -50,25 +50,36 @@ public class PencarianBuku19 {
         }
     }
 
-    public int FindBinarySearch(int cari, int left, int right){
+    public int FindBinarySearch(int cari, int left, int right) {
+        bubbleSortBuku();
         int mid;
-
-        if (left <= right) {
+        if (right >= left) {
             mid = (left + right) / 2;
-            if (cari == listBk[mid].kodeBuku) {
+            if (listBk[mid].kodeBuku == cari) {
                 return mid;
             } else if (listBk[mid].kodeBuku > cari) {
-                return FindBinarySearch(cari, left, mid-1);
+                return FindBinarySearch(cari, left, mid - 1);
             } else {
-                return FindBinarySearch(cari, mid+1, right);
+                return FindBinarySearch(cari, mid + 1, right);
             }
-        } else {
-            return -1;
         }
+        return -1;
     }
+
+    void bubbleSortBuku() {
+        for (int i = 0; i < listBk.length - 1; i++) {
+            for (int j = 1; j < listBk.length - i; j++) {
+                if (listBk[j].kodeBuku < listBk[j - 1].kodeBuku) {
+                    Buku19 tmp = listBk[j];
+                    listBk[j] = listBk[j - 1];
+                    listBk[j - 1] = tmp;
+                }
+            }
+        }
+    }    
     public Buku19 FindBuku(int cari){
         for (int j = 0; j < listBk.length; j++) {
-            if (listBk[j].kodeBuku == cari) {
+            if (listBk[j] != null && listBk[j].kodeBuku == cari) {
                 return listBk[j];
             }
         }

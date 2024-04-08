@@ -1,4 +1,4 @@
-package p7;
+package p7.TestSearching;
 
 public class Buku19 {
     static Buku19[] listBuku = new Buku19[5]; 
