@@ -302,3 +302,112 @@ data barang di gudang menggunakan struktur perulangan While
     gudang19 gudang = new gudang19(kapasitas);
     ```
 5. Commit dan push kode program ke Github
+
+## 2.2 Percobaan 2: Konversi Kode Barang ke Biner
+Waktu Percobaan: 30 Menit
+Sampai tahap ini, proses pengelolaan data barang menggunakan konsep Stack telah berhasil 
+dibuat pada Percobaan 1. Selanjutnya, pada Percobaan 2 ini ditambahkan method baru yang 
+berfungsi untuk mengonversi kode barang bertipe int ke dalam bentuk biner saat barang tersebut 
+diambil atau dikeluarkan dari tumpukan.
+
+### 2.2.1 Langkah-langkah Percobaan
+1. Buka kembali file Gudang<NoAbsen>.java
+2. Tambahkan method konversiDesimalKeBiner dengan menerima parameter kode bertipe int
+
+    ```java
+    public String konversiDesimalkeBiner(int kode){
+        StackKonversi19 stack = new StackKonversi19();
+        while (kode > 0) {
+            int sisa = kode % 2;
+            stack.push(sisa);
+            kode = kode / 2;
+        }
+        String biner = new String();
+        while (!stack.isEmpty()) {
+            biner += stack.pop();
+        }
+        return biner;
+    }
+    ```
+    Pada method ini, terdapat penggunaan StackKonversi yang merupakan penerapan Stack, sama 
+    halnya dengan class Gudang. Hal ini bertujuan agar Stack untuk barang berbeda dengan Stack 
+    yang digunakan untuk biner. Oleh karena itu, buat file baru bernama 
+    StackKonversi<NoAbsen>.java
+    Catatan: Perlu diingat bahwa pada dasarnya semua class Stack mempunyai operasi (method)
+    yang sama. Hal yang membedakan adalah aktivitas spesifik yang perlu dilakukan, misalnya 
+    setelah menambah atau mengeluarkan data.
+3. Tambahkan empat method yaitu isEmpty, isFull, push, dan pull sebagai operasi utama Stack pada 
+class StackKonversi
+
+    ```java
+    public class StackKonversi19 {
+        int size;
+        int[] tumpukanBiner;
+        int top;
+
+        public StackKonversi19(){
+            this.size = 32; //asumsi 32 bit
+            this.tumpukanBiner = new int[size];
+            this.top = -1;
+
+        }
+
+        public boolean isEmpty(){
+            return top == -1;
+        }
+
+        public boolean isFull(){
+            return top == size -1;
+        }
+
+        public void push(int data){
+            if (!isFull()){
+                System.out.println("Stack penuh");
+            } else {
+                top++;
+                tumpukanBiner[top] = data;
+            }
+        }
+
+        public int pop() {
+            if (isEmpty()) {
+                System.out.println("Stack kosong");
+                return -1;
+            } else {
+                int data = tumpukanBiner[top];
+                top--;
+                return data;
+            }
+        }
+    }
+    ```
+4. Agar kode barang dikonversi ke dalam bentuk biner saat barang tersebut diambil atau dikeluarkan 
+dari tumpukan, maka tambahkan baris kode program pada method ambilBarang
+
+    ```java
+    public barang19 ambilBarang(){
+        if (!cekKosong()) {
+            barang19 delete = tumpukan[top];
+            top--;
+            System.out.println("Barang " + delete.nama + " diambil dari Gudang.");
+            System.out.println("Kode unik dalam biner: " + konversiDesimalkeBiner(delete.kode));
+            return delete;
+        } else {
+            System.out.println("Tumpukan barang kosong");
+            return null;
+        }
+    }
+    ```
+5. Compile dan run program.
+6. Commit dan push kode program ke Github
+
+### 2.2.2 Verifikasi Hasil Percobaan
+![alt text](image-2.png)
+
+### 2.2.3 Pertanyaan
+1. Pada method konversiDesimalKeBiner, ubah kondisi perulangan menjadi while (kode != 0), bagaimana hasilnya? Jelaskan alasannya!
+
+    jawab: jika perulangan pada method konverseDesimalKeBiner dirubah menjadi while (kode != 0) hasilnya akan tetap sama karena sebelumnya kode > 0 yang diamana perulangan akan terus terjadi selama kode tidak bernilai 0 atau tidak sama dengan 0.
+2. Jelaskan alur kerja dari method konversiDesimalKeBiner!
+
+    jawab: selama bilangan kode (bilangan desimal yang ingin dikonversi) masih lebih besar dari nol (kode != 0),maka sisa pembagian kode dengan 2 (sisa = kode % 2). Sisa tersebut masuk ke dalam stack menggunakan method push dari objek stack. Pada setiap iterasi, nilai kode akan dibagi dengan 2 (kode = kode / 2), sehingga perulangan akan berlanjut hingga kode mencapai nilai nol. Setelah selesai melakukan perulangan pembagian, stack sekarang berisi sisa-sisa dari pembagian bilangan desimal dengan 2. Untuk mendapatkan representasi biner dari bilangan desimal, kita akan membaca nilai-nilai dari stack dan menyusunnya kembali menjadi string biner. Method pop dari stack untuk mengambil sisa-sisa secara berurutan dari stack. Setiap nilai yang di-pop akan ditambahkan ke string biner, sehingga kita akan mendapatkan representasi biner dari bilangan desimal.Setelah semua sisa telah diambil dan disusun kembali menjadi string biner, kita kembalikan string biner sebagai hasil konversi.

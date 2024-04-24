@@ -21,7 +21,7 @@ public class StackKonversi19 {
     }
 
     public void push(int data){
-        if (!isFull()){
+        if (isFull()){
             System.out.println("Stack penuh");
         } else {
             top++;
