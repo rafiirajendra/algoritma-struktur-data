@@ -203,3 +203,102 @@ data barang di gudang menggunakan struktur perulangan While
     ```
 18. Commit dan push kode program ke Github
 19. Compile dan run program.
+
+### 2.1.2 Verifikasi Hasil Percobaan
+
+![alt text](<verif percobaan 1.png>)
+
+### 2.1.3 Pertanyaan
+1. Lakukan perbaikan pada kode program, sehingga keluaran yang dihasilkan sama dengan verifikasi hasil percobaan! Bagian mana saja yang perlu diperbaiki?
+
+    jawab: bagian yang diperlu diperbaiki yaitu pada class barang19.java dan gudang19.java. Untuk class barang19.java menambahkan paramater this. Untuk class gudang19 perbaikan pada method tampilkan barang yaitu merubah pada perulangan yang awalnya 
+
+    ```java
+    for(int i = 0; i <= top; i++>)
+    ```
+
+    menjadi
+
+    ```java
+    for(int i = top; i >= 0; i--)
+    ```
+
+2. Berapa banyak data barang yang dapat ditampung di dalam tumpukan? Tunjukkan potongan kode programnya!
+
+    jawab: jumlah maksimum data barang yang dapat disimpan dalam tumpukan ditentukan oleh parameter size yang dilewatkan saat membuat objek baru. Parameter size mengatur kapasitas dari array yang menyimpan barang-barang tersebut. Berikut adalah potongan kode dari konstruktor gudang19 di mana ukuran array tumpukan ditentukan:
+
+    ```java
+    public gudang19(int kapasitas){
+    size = kapasitas;
+    tumpukan = new barang19[size];
+    top = -1;
+    }
+    ```
+    Pada konstruktor ini, kapasitas adalah parameter yang menentukan berapa banyak item yang dapat ditampung oleh tumpukan (stack). Sebagai contoh, dalam kelas utama utama19, sebuah gudang19 baru dengan kapasitas 7 dibuat:
+
+    ```java
+    gudang19 gudang = new gudang19(7);
+    ```
+3. Mengapa perlu pengecekan kondisi !cekKosong() pada method tampilkanBarang? Kalau kondisi tersebut dihapus, apa dampaknya?
+
+    jawab: pengecekan kondisi !cekKosong() pada method tampilkanBarang() diperlukan untuk memastikan bahwa tumpukan (tumpukan) tidak kosong sebelum mencoba menampilkan barang-barang di dalamnya. Jika kondidi !cekKosong() dihilangkan yang terjadi adalah akan muncul NullPointerException karena mencoba mengakses properti dari objek null.
+4. Modifikasi kode program pada class Utama sehingga pengguna juga dapat memilih operasi lihat barang teratas, serta dapat secara bebas menentukan kapasitas gudang!
+
+    jawab: 
+
+    menambahkan opsi untuk melihat barang teratas
+
+    ```java
+       while (true) {
+            System.out.println("\n Menu: ");
+            System.out.println("1. Tambahkan barang");
+            System.out.println("2. Ambil barang");
+            System.out.println("3. Lihat barang teratas");
+            System.out.println("4. Tampilkan semua barang");
+            System.out.println("5. keluar");
+            System.out.print("Pilih operasi: ");
+            int pilihan = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (pilihan) {
+                case 1:
+                    System.out.print("Masukan kode barang: ");
+                    int kode = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Masukan nama barang: ");
+                    String nama = scanner.nextLine();
+                    System.out.print("Masukkan nama kategori: ");
+                    String kategori = scanner.nextLine();
+                    barang19 barangBaru = new barang19(kode, nama, kategori);
+                    gudang.tambangBarang(barangBaru);
+                    break;
+
+                case 2:
+                    gudang.ambilBarang();
+                    break;
+
+                case 3:
+                    gudang.lihatBarangTeratas();
+                    break;
+                case 4:
+                    gudang.tampilkanBarang();
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            }
+        }
+    ```
+
+    merubah code program agar pengguna dapat menentukan secara bebas kapasitas gudang
+
+    ```java
+    Scanner scanner = new Scanner(System.in);
+        
+    System.out.print("Masukkan kapasitas gudang: ");
+    int kapasitas = scanner.nextInt();
+
+    gudang19 gudang = new gudang19(kapasitas);
+    ```
+5. Commit dan push kode program ke Github
