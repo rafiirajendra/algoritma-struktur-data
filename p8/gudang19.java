@@ -1,5 +1,7 @@
 package p8;
 
+import java.util.Scanner;
+
 public class gudang19 {
     barang19[] tumpukan;
     int size, top;
@@ -63,7 +65,6 @@ public class gudang19 {
     public void tampilkanBarang(){
         if (!cekKosong()) {
             System.out.println("Rincian tumpukan barang di Gudang.");
-            //for (int i = top; i > 0; i--){}
             for (int i = top; i >= 0; i--) {
                 System.out.printf("Kode %d: %s (Kategori %s)\n" , tumpukan[i].kode, tumpukan[i].nama, tumpukan[i].kategori);
             }
@@ -84,5 +85,63 @@ public class gudang19 {
             biner += stack.pop();
         }
         return biner;
+    }
+
+    public barang19 lihatBarangTerbawah(){
+        if (!cekKosong()) {
+            barang19 barangTerbawah = tumpukan[0];
+            System.out.println("Barang terbawah: " + barangTerbawah.nama);
+            return barangTerbawah;
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+            return null;
+        }
+    }
+
+    
+    public void cariBarang(Scanner scanner) {
+        System.out.println("Pilih metode pencarian:");
+        System.out.println("1. Berdasarkan kode barang");
+        System.out.println("2. Berdasarkan nama barang");
+        System.out.print("Masukkan pilihan: ");
+        int pilihan = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (pilihan) {
+            case 1:
+                System.out.print("Masukkan kode barang: ");
+                int kodeCari = scanner.nextInt();
+                scanner.nextLine();
+                boolean ditemukanKode = false;
+                for (int i = 0; i <= top; i++) {
+                    if (tumpukan[i].kode == kodeCari) {
+                        System.out.println("Barang ditemukan: " + tumpukan[i].nama + " (Kode: " + tumpukan[i].kode + ")");
+                        ditemukanKode = true;
+                        break;
+                    }
+                }
+                if (!ditemukanKode) {
+                    System.out.println("Barang dengan kode " + kodeCari + " tidak ditemukan.");
+                }
+                break;
+            case 2:
+                System.out.print("Masukkan nama barang: ");
+                String namaCari = scanner.nextLine();
+                boolean ditemukanNama = false;
+                for (int i = 0; i <= top; i++) {
+                    if (tumpukan[i].nama.equalsIgnoreCase(namaCari)) {
+                        System.out.println("Barang ditemukan: " + tumpukan[i].nama + " (Kode: " + tumpukan[i].kode + ")");
+                        ditemukanNama = true;
+                        break;
+                    }
+                }
+                if (!ditemukanNama) {
+                    System.out.println("Barang dengan nama " + namaCari + " tidak ditemukan.");
+                }
+                break;
+            default:
+                System.out.println("Pilihan tidak valid.");
+                break;
+        }
     }
 }

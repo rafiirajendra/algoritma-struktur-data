@@ -15,8 +15,10 @@ public class utama19 {
             System.out.println("1. Tambahkan barang");
             System.out.println("2. Ambil barang");
             System.out.println("3. Lihat barang teratas");
-            System.out.println("4. Tampilkan semua barang");
-            System.out.println("5. keluar");
+            System.out.println("4. Lihat barang terbawah");
+            System.out.println("5. Tampilkan semua barang");
+            System.out.println("6. Cari barang");
+            System.out.println("7. keluar");
             System.out.print("Pilih operasi: ");
             int pilihan = scanner.nextInt();
             scanner.nextLine();
@@ -42,9 +44,16 @@ public class utama19 {
                     gudang.lihatBarangTeratas();
                     break;
                 case 4:
-                    gudang.tampilkanBarang();
+                    gudang.lihatBarangTerbawah();
                     break;
                 case 5:
+                    gudang.tampilkanBarang();
+                    break;
+                case 6:
+                    gudang.cariBarang(scanner);
+                    break;
+                case 7:
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Pilihan tidak valid. Silakan coba lagi.");
