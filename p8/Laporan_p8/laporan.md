@@ -411,3 +411,170 @@ dari tumpukan, maka tambahkan baris kode program pada method ambilBarang
 2. Jelaskan alur kerja dari method konversiDesimalKeBiner!
 
     jawab: selama bilangan kode (bilangan desimal yang ingin dikonversi) masih lebih besar dari nol (kode != 0),maka sisa pembagian kode dengan 2 (sisa = kode % 2). Sisa tersebut masuk ke dalam stack menggunakan method push dari objek stack. Pada setiap iterasi, nilai kode akan dibagi dengan 2 (kode = kode / 2), sehingga perulangan akan berlanjut hingga kode mencapai nilai nol. Setelah selesai melakukan perulangan pembagian, stack sekarang berisi sisa-sisa dari pembagian bilangan desimal dengan 2. Untuk mendapatkan representasi biner dari bilangan desimal, kita akan membaca nilai-nilai dari stack dan menyusunnya kembali menjadi string biner. Method pop dari stack untuk mengambil sisa-sisa secara berurutan dari stack. Setiap nilai yang di-pop akan ditambahkan ke string biner, sehingga kita akan mendapatkan representasi biner dari bilangan desimal.Setelah semua sisa telah diambil dan disusun kembali menjadi string biner, kita kembalikan string biner sebagai hasil konversi.
+
+## 2.3 Percobaan 3: Konversi Notasi Infix ke Postfix
+Waktu Percobaan: 90 Menit
+Pada percobaan ini, dilakukan pembuatan kode program untuk melakukan konversi notasi infix 
+menjadi notasi postfix. Perhatikan Class Diagram Postfix berikut ini:
+
+![alt text](image-3.png)
+
+### 2.3.1 Langkah-langkah Percobaan
+1. Buat file baru bernama Postfix<NoAbsen>.java
+2. Tambahkan atribut n, top, dan stack sesuai Class Diagram Postfix tersebut
+3. Tambahkan pula konstruktor berparameter seperti gambar berikut ini.
+
+    ```java
+    public postfix19(int total){
+        n = total;
+        top = -1;
+        stack = new char[n];
+        push ('(');
+    }
+    ```
+4. Buat method push dan pop bertipe void.
+    ```java
+    public void push(char c){
+        top++;
+        stack[top] = c;
+    }
+
+    public char pop(){
+        char item = stack[top];
+        top--;
+        return item;
+    }
+    ```
+5. Buat method IsOperand dengan tipe boolean yang digunakan untuk mengecek apakah elemen 
+data berupa operand.
+    ```java
+    public boolean isOperand(char c){
+        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '.') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    ```
+6. Buat method IsOperator dengan tipe boolean yang digunakan untuk mengecek apakah elemen 
+data berupa operator.
+    ```java
+    public boolean isOperator(char c){
+        if (c == '^' || c == '%' || c == '/' || c == '*' || c == '-' || c == '+') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    ```
+7. Buat method derajat yang mempunyai nilai kembalian integer untuk menentukan derajat 
+operator.
+    ```java
+    public int derajat(char c){
+        switch (c) {
+            case '^':
+                return 3;
+            case '%':
+                return 2;
+            case '/':
+                return 2;
+            case '*':
+                return 2;
+            case '-':
+                return 1;
+            case '+':
+                return 1;
+            default:
+                return 0;
+        }
+    }
+    ```
+8. Buat method konversi untuk melakukan konversi notasi infix menjadi notasi postfix dengan cara 
+mengecek satu persatu elemen data pada String Q sebagai parameter masukan.
+    ```java
+    public String konversi(String Q){
+        String P = "";
+        char c;
+        for (int i = 0; i < n; i++) {
+            c = Q.charAt(i);
+            if (isOperand(c)) {
+                P = P + c;
+            }
+            if (c == '(') {
+                push(c);
+            }
+            if (c == ')') {
+                while (stack[top] != '(') {
+                    P = P + pop();
+                }
+                pop();
+            }
+            if (isOperator(c)) {
+                while (derajat(stack[top]) >= derajat(c)) {
+                    P = P + pop();
+                }
+                push(c);
+            }
+        }
+        return P;
+    }
+    ```
+9. Selanjutnya, buat class baru dengan nama PostfixMain<NoAbsen>.java. Buat method main, 
+kemudian buat variabel P dan Q. Variabel P digunakan untuk menyimpan hasil akhir notasi postfix 
+setelah dikonversi, sedangkan variabel Q digunakan untuk menyimpan masukan dari pengguna 
+berupa ekspresi matematika dengan notasi infix. Deklarasikan variabel Scanner dengan nama sc, 
+kemudian panggil fungsi built-in trim yang digunakan untuk menghapus adanya spasi di depan 
+atau di belakang teks dari teks persamaan yang dimasukkan oleh pengguna.
+    ```java
+    public class postfixMain19 {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            String P, Q;
+
+            System.out.print("Masukkan ekspresi matematika (infix): ");
+            Q = sc.nextLine();
+            Q = Q.trim();
+            Q = Q + ")";
+        }
+    }
+    ```
+    Penambahan string “)” digunakan untuk memastikan semua simbol/karakter yang masih berada di stack setelah semua persamaan terbaca, akan dikeluarkan dan dipindahkan ke postfix
+10. Buat variabel total untuk menghitung banyaknya karakter pada variabel Q.
+    ```java
+    int total = Q.length();
+    ```
+11. Lakukan instansiasi objek dengan nama post dan nilai parameternya adalah total. Kemudian 
+panggil method konversi untuk melakukan konversi notasi infix Q menjadi notasi postfix P.
+    ```java
+        postfix19 post = new postfix19(total);
+        P = post.konversi(Q);
+        System.out.println("Postfix: " + P);
+    ```
+12. Compile dan run program.
+13. Commit dan push kode program ke Github
+
+### 2.3.2 Verifikasi Hasil Percobaan
+
+![alt text](image-4.png)
+
+### 2.3.3 Pertanyaan
+1. Pada method derajat, mengapa return value beberapa case bernilai sama? Apabila return value diubah dengan nilai berbeda-beda setiap case-nya, apa yang terjadi?
+
+    jawab: operator seperti %, /, dan * adalah sama karena dalam hierarki operator matematika, ketiga operator tersebut memiliki tingkat prioritas yang sama dalam evaluasi ekspresi. Mereka semua adalah operator aritmatika yang melakukan operasi pada dua operand dan secara umum dianggap memiliki prioritas yang lebih tinggi dari operator penambahan (+) dan pengurangan (-), tetapi lebih rendah dari operator eksponensial (^). Jika mengubah nilai yang dikembalikan sehingga setiap operator memiliki nilai yang berbeda, maka hierarki prioritas operasi akan berubah. Ini bisa menyebabkan ekspresi matematika dievaluasi dengan cara yang berbeda dari yang diharapkan secara matematis.
+2. Jelaskan alur kerja method konversi!
+
+    jawab: 
+    - Inisialisasi: 
+        - String P: Diinisialisasi sebagai string kosong. Ini akan digunakan untuk menyimpan ekspresi postfix akhir.
+        - Variabel c: Digunakan untuk menyimpan karakter saat ini yang sedang diproses dalam loop.
+    - Loop
+        - Cek Operand: Jika c adalah operand (huruf atau angka), tambahkan langsung ke P.
+        - Cek Buka Kurung (: Jika c adalah tanda buka kurung, push c ke dalam stack.
+        - Cek Tutup Kurung ): Jika c adalah tanda tutup kurung, pop semua operator dari stack sampai tanda buka kurung ditemukan, tambahkan operator tersebut ke P.
+        - Cek Operator: Jika c adalah operator (seperti +, -, *, /, %, ^)
+3. Pada method konversi, apa fungsi dari potongan kode berikut?
+    ```java
+    c  = Q.charArt(i);
+    ```
+    jawab: potongan kode c = Q.charAt(i); berfungsi untuk mendapatkan karakter pada posisi i dari string Q. Di sini, Q adalah string yang berisi ekspresi matematika dalam format infix yang dimasukkan oleh pengguna.
+
