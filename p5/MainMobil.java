@@ -1,4 +1,4 @@
-package minggu5;
+package p5;
 
 public class MainMobil {
     public static void main(String[] args) {

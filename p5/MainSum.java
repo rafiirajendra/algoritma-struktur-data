@@ -1,4 +1,4 @@
-package minggu5;
+package p5;
 
 import java.util.Scanner;
 

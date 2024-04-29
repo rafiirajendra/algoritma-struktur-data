@@ -1,4 +1,4 @@
-package minggu5;
+package p5;
 
 public class Pangkat {
     public int nilai, pangkat;

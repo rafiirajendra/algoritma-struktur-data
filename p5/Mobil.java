@@ -1,4 +1,4 @@
-package minggu5;
+package p5;
 
 public class Mobil {
     String[] merk = {"BMW", "Ford", "Nissan", "Subaru", "Subaru", "Toyota", "Toyota", "Volkswagen"};

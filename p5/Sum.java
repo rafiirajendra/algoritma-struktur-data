@@ -1,4 +1,4 @@
-package minggu5;
+package p5;
 
 public class Sum {
     private int elemen;
