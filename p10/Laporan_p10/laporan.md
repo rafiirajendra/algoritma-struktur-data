@@ -504,3 +504,19 @@ diberikan oleh pengguna.
 Queue yang digunakan untuk mengecek antrian yang berada di posisi belakang! Tambahkan pula daftar menu 5. Cek Antrian paling belakang pada class QueueMain sehingga method peekRear dapat dipanggil!
 
     jawab: 
+
+    penambahan method peekRear pada class queueNasabah
+
+    ```java
+    public void peekRear(){
+        if (!isEmpty()) {
+            System.out.println("Elemen terbelakang: " + data[rear].norek + " " + data[rear].nama + " " + data[rear].alamat + " " + data[rear].umur + " " + data[rear].saldo);
+        } else {
+            System.out.println("Queue masih kosong");
+        }
+    }
+    ```
+
+    output :
+
+    ![alt text](image-4.png)
