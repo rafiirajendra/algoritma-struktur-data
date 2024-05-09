@@ -1,6 +1,6 @@
 public class mahasiswaMain {
     public static void main(String[] args) {
-        SingleLinkList sll = new SingleLinkList();
+        singleLinkList sll = new singleLinkList();
 
         sll.addFirst(111, "Anton");
         sll.addLast(112, "Prita");

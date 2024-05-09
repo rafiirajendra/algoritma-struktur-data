@@ -1,4 +1,4 @@
-public class SingleLinkList {
+public class singleLinkList {
     node head, tail;
 
     boolean isEmpty(){
