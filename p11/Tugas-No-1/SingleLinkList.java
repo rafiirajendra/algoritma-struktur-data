@@ -20,7 +20,7 @@ public class SingleLinkList {
     }
 
     void addFirst(int nim, String nama){
-        node ndInput = new node(nim, nama, head);
+        node ndInput = new node(nim, nama);
         if (isEmpty()) {
             head = ndInput;
             tail = ndInput;
@@ -30,7 +30,7 @@ public class SingleLinkList {
     }
 
     void addLast(int nim, String nama) {
-        node ndInput = new node(nim, nama, null);
+        node ndInput = new node(nim, nama);
         if (isEmpty()) {
             head = ndInput;
             tail = ndInput;
@@ -41,7 +41,7 @@ public class SingleLinkList {
     }
 
     void insertAfter(int key, int nim, String nama) {
-        node ndInput = new node(nim, nama, null);
+        node ndInput = new node(nim, nama);
         node temp = head;
         while (temp != null) {
             if (temp.nim == key) {
@@ -69,7 +69,7 @@ public class SingleLinkList {
         for (int i = 1; i < index && temp.next != null; i++) {
             temp = temp.next;
         }
-        node ndInput = new node(nim, nama, temp.next);
+        node ndInput = new node(nim, nama);
         temp.next = ndInput;
         if (ndInput.next == null) {
             tail = ndInput;
