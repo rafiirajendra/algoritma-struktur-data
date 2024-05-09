@@ -365,7 +365,220 @@ Linked List
 dipelajari sebelumnya untuk menginputkan data.
 
     ![alt text](image-3.png)
+
+    jawab: terdapat 3 class yang saya buat yaitu node, SingleLinkList, mahasiswaMain. Berikut kode program dari masing-masing class.
+
+    Class Node
+    ```java
+    public class node {
+        int nim;
+        String nama;
+        node next;
+
+        node (int nim, String nama, node berikutnya){
+            this.nim = nim;
+            this.nama = nama;
+            next = berikutnya;
+        }
+    }
+    ```
+    Class SingleLinkList
+    ```java
+    public class SingleLinkList {
+        node head, tail;
+
+        boolean isEmpty(){
+            return head == null;
+        } 
+
+        void print(){
+            if (!isEmpty()) {
+                node tmp = head;
+                int count = 1; 
+                while (tmp != null) {
+                    System.out.println("mhs" + count + " \nnim : " + tmp.nim + " nama : " + tmp.nama);
+                    tmp = tmp.next;
+                    count++; 
+                }
+            } else {
+                System.out.println("Linked List Kosong");
+            }
+        }
+
+        void addFirst(int nim, String nama){
+            node ndInput = new node(nim, nama);
+            if (isEmpty()) {
+                head = ndInput;
+                tail = ndInput;
+            } else {
+                head = ndInput;
+            }
+        }
+
+        void addLast(int nim, String nama) {
+            node ndInput = new node(nim, nama);
+            if (isEmpty()) {
+                head = ndInput;
+                tail = ndInput;
+            } else {
+                tail.next = ndInput;
+                tail = ndInput;
+            }
+        }
+
+        void insertAfter(int key, int nim, String nama) {
+            node ndInput = new node(nim, nama);
+            node temp = head;
+            while (temp != null) {
+                if (temp.nim == key) {
+                    ndInput.next = temp.next;
+                    temp.next = ndInput;
+                    if (ndInput.next == null) {
+                        tail = ndInput;
+                    }
+                    break;
+                }
+                temp = temp.next;
+            }
+        }
+
+        void insertAt(int index, int nim, String nama) {
+            if (index < 0) {
+                System.out.println("index harus >= 0");
+                return;
+            }
+            if (index == 0) {
+                addFirst(nim, nama);
+                return;
+            }
+            node temp = head;
+            for (int i = 1; i < index && temp.next != null; i++) {
+                temp = temp.next;
+            }
+            node ndInput = new node(nim, nama);
+            temp.next = ndInput;
+            if (ndInput.next == null) {
+                tail = ndInput;
+            }
+        }
+    }
+    ```
+    Class mahasiswaMain
+    ```java
+    public class mahasiswaMain {
+        public static void main(String[] args) {
+            SingleLinkList sll = new SingleLinkList();
+
+            sll.addFirst(111, "Anton");
+            sll.addLast(112, "Prita");
+            sll.addLast(113, "Yusuf");
+            sll.addLast(114, "Doni");
+            sll.addLast(115, "Sari");
+            sll.print();
+        }
+    }
+    ```
+    Output dari kode program diatas
+
+    ![alt text](image-4.png)
 2. Buatlah implementasi program antrian layanan unit kemahasiswaan sesuai dengan kondisi yang 
 ditunjukkan pada soal nomor 1! Ketentuan
     - a. Implementasi antrian menggunakan Queue berbasis Linked List!
     - b. Program merupakan proyek baru, bukan modifikasi dari soal nomor 1!
+
+    jawab: terdapat 3 class yang saya buat yaitu node, linkedListQueue, Main. Berikut kode program dari masing-masing class.
+
+    Class node
+    ```java
+    public class node {
+        int nim;
+        String nama;
+        node next;
+
+        public node(int nim, String nama) {
+            this.nim = nim;
+            this.nama = nama;
+            this.next = null;
+        }
+    }
+    ```
+    Class linkedListQueue
+    ```java
+    public class linkedListQueue {
+        node head, tail;
+        
+        public linkedListQueue(){
+            this.head = null;
+            this.tail = null;
+        }
+
+        boolean isEmpty(){
+            return head == null;
+        }
+
+        public void enqueue(int nim, String nama){
+        node newNode = new node(nim, nama);
+        if (tail == null) {
+                head = tail = newNode;
+                return;
+        }
+        tail.next = newNode;
+        tail = newNode;
+        }
+
+        public void dequeue(){
+            if (isEmpty()) {
+                System.out.println("Linked list masih kosong, " + "tidak dapat dihapus");
+            } else {
+                System.out.println("Dequeue: " + head.nim + " " + head.nama);
+                head = head.next;
+                if (head == null) {
+                    tail = null; 
+                }
+            }
+        }
+
+        public void print(){
+            if (!isEmpty()) {
+                node tmp = head;
+                System.out.print("Isi Linked List: ");
+                while (tmp != null) {
+                    System.out.print(tmp.nim + " " + tmp.nama + "\t");
+                    tmp = tmp.next;
+                }
+                System.out.println(" ");
+            } else {
+                System.out.println("Linked List kosong");
+            }
+        }
+    }
+    ```
+    Class Main
+    ```java
+    public class Main {
+        public static void main(String[] args) {
+            linkedListQueue queue = new linkedListQueue();
+
+            // Enqueue beberapa mahasiswa
+            queue.enqueue(111, "Anton");
+            queue.enqueue(112, "Prita");
+            queue.enqueue(113, "Yusuf");
+            queue.enqueue(114, "Doni");
+            queue.enqueue(115, "Sari");
+
+            // Menampilkan antrian mahasiswa
+            System.out.println("Queue:");
+            queue.print();
+
+            // Dequeue satu mahasiswa
+            queue.dequeue();
+
+            // Menampilkan antrian setelah satu mahasiswa dikeluarkan
+            System.out.println("Queue setelah dequeue:");
+            queue.print();
+        }
+    }
+    ```
+    Output dari kode program diatas
+
+    ![alt text](image-5.png)
