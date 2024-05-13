@@ -450,3 +450,17 @@ Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
     1. Kode program pertama menggunakan variabel size untuk mengecek apakah Double Linked Lists kosong atau tidak. Kode program ini mengecek apakah size sama dengan 0, dan jika ya, maka mengembalikan true, yang berarti Double Linked Lists kosong. Jika tidak, maka mengembalikan false, yang berarti Double Linked Lists tidak kosong.
 
     2. Kode program kedua menggunakan variabel head untuk mengecek apakah Single Linked Lists kosong atau tidak. Kode program ini hanya mengembalikan true jika head bernilai null, yang berarti Single Linked Lists kosong. Jika head tidak bernilai null, maka mengembalikan false, yang berarti Single Linked Lists tidak kosong.
+
+## 12.5 Tugas Praktikum 
+Waktu : 100 Menit 
+
+1. Buat program antrian vaksinasi menggunakan queue berbasis double linked list sesuai ilustrasi 
+dan menu di bawah ini! (counter jumlah antrian tersisa di menu cetak(3) dan data orang yang telah divaksinasi di menu Hapus Data(2) harus ada)  
+Contoh Ilustrasi Program
+
+    ![alt text](image-9.png)
+
+    ![alt text](image-10.png)
+
+2. Buatlah program daftar film yang terdiri dari id, judul dan rating menggunakan double linked lists, bentuk program memiliki fitur pencarian melalui ID Film dan pengurutan Rating secara descending. Class Film wajib diimplementasikan dalam soal ini. 
+Contoh Ilustrasi Program 
