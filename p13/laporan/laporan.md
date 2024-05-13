@@ -455,12 +455,20 @@ Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
 Waktu : 100 Menit 
 
 1. Buat program antrian vaksinasi menggunakan queue berbasis double linked list sesuai ilustrasi 
-dan menu di bawah ini! (counter jumlah antrian tersisa di menu cetak(3) dan data orang yang telah divaksinasi di menu Hapus Data(2) harus ada)  
-Contoh Ilustrasi Program
+dan menu di bawah ini! **(counter jumlah antrian tersisa di menu cetak(3) dan data orang yang telah divaksinasi di menu Hapus Data(2) harus ada)**  
+**Contoh Ilustrasi Program**
 
     ![alt text](image-9.png)
 
     ![alt text](image-10.png)
 
 2. Buatlah program daftar film yang terdiri dari id, judul dan rating menggunakan double linked lists, bentuk program memiliki fitur pencarian melalui ID Film dan pengurutan Rating secara descending. Class Film wajib diimplementasikan dalam soal ini. 
-Contoh Ilustrasi Program 
+**Contoh Ilustrasi Program** 
+
+    ![alt text](image-11.png)
+
+    ![alt text](image-12.png)
+
+    ![alt text](image-13.png)
+
+    ![alt text](image-14.png)
