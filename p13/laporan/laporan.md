@@ -380,15 +380,38 @@ Pada praktikum 3 ini dilakukan uji coba untuk mengambil data pada linked list da
 
 1. Buatlah method getFirst() di dalam class DoubleLinkedLists untuk mendapatkan data pada awal linked lists. 
     ```java
-
+    public int getFirst() throws Exception {
+        if (isEmpty()) {
+            throw new Exception("Linked list masih kosong");
+        }
+        return head.data;
+    }
     ```
 2. Selanjutnya, buatlah method getLast() untuk mendapat data pada akhir linked lists. 
     ```java
-
+    public int getLast() throws Exception {
+        if (isEmpty()) {
+            throw new Exception("Linked list masih kosong");
+        }
+        Node tmp = head;
+        while (tmp.next != null) {
+            tmp = tmp.next;
+        }
+        return tmp.data;
+    }
     ```
 3. Method get(int index) dibuat untuk mendapatkan data pada indeks tertentu
     ```java
-
+    public int get(int index) throws Exception {
+        if (isEmpty() || index >= size) {
+            throw new Exception("Nilai indeks diluar batas");
+        }
+        Node tmp = head;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.next;
+        }
+        return tmp.data;
+    }
     ```
 4. Pada main class tambahkan potongan program berikut dan amati hasilnya!
 
