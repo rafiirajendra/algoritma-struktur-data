@@ -487,10 +487,6 @@ dan menu di bawah ini! **(counter jumlah antrian tersisa di menu cetak(3) dan da
 
     jawab: 
 
-    kode program:
-
-    p13\tugas_no1
-
     output kode program:
 
     ![alt text](image-16.png)
@@ -509,8 +505,6 @@ dan menu di bawah ini! **(counter jumlah antrian tersisa di menu cetak(3) dan da
     ![alt text](image-14.png)
 
     jawab: 
-
-    kode program:
 
     p13\tugas_no2
 
