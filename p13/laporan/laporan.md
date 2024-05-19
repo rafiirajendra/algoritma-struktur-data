@@ -485,6 +485,14 @@ dan menu di bawah ini! **(counter jumlah antrian tersisa di menu cetak(3) dan da
 
     ![alt text](image-10.png)
 
+    jawab: 
+
+    output kode program 
+
+    ![alt text](image-16.png)
+
+    ![alt text](image-15.png)
+
 2. Buatlah program daftar film yang terdiri dari id, judul dan rating menggunakan double linked lists, bentuk program memiliki fitur pencarian melalui ID Film dan pengurutan Rating secara descending. Class Film wajib diimplementasikan dalam soal ini. 
 **Contoh Ilustrasi Program** 
 
@@ -495,3 +503,11 @@ dan menu di bawah ini! **(counter jumlah antrian tersisa di menu cetak(3) dan da
     ![alt text](image-13.png)
 
     ![alt text](image-14.png)
+
+    jawab: 
+
+    output kode program:
+
+    ![alt text](image-17.png)
+
+    ![alt text](image-18.png)
