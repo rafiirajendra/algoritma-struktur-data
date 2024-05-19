@@ -489,7 +489,7 @@ dan menu di bawah ini! **(counter jumlah antrian tersisa di menu cetak(3) dan da
 
     kode program:
 
-    [Tugas No 1](D:\prakstrukturdata\p13\tugas_no1)
+    [Tugas No 1](https://github.com/rafiirajendra/algoritma-struktur-data/tree/main/p13/tugas_no1)
 
     output kode program:
 
@@ -512,7 +512,7 @@ dan menu di bawah ini! **(counter jumlah antrian tersisa di menu cetak(3) dan da
 
     kode program:
 
-    [Tugas No 2](D:\prakstrukturdata\p13\tugas_no2)
+    [Tugas No 2](https://github.com/rafiirajendra/algoritma-struktur-data/tree/main/p13/tugas_no2)
 
     output kode program:
 
