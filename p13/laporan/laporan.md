@@ -487,6 +487,10 @@ dan menu di bawah ini! **(counter jumlah antrian tersisa di menu cetak(3) dan da
 
     jawab: 
 
+    kode program:
+
+    [Tugas No 1](D:\prakstrukturdata\p13\tugas_no1)
+
     output kode program:
 
     ![alt text](image-16.png)
@@ -506,7 +510,9 @@ dan menu di bawah ini! **(counter jumlah antrian tersisa di menu cetak(3) dan da
 
     jawab: 
 
-    p13\tugas_no2
+    kode program:
+
+    [Tugas No 2](D:\prakstrukturdata\p13\tugas_no2)
 
     output kode program:
 
