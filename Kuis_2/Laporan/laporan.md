@@ -8,7 +8,7 @@
 
 Kode prgram terdapat pada link dibawah
 
-[Klasemen]()
+[Klasemen](https://github.com/rafiirajendra/algoritma-struktur-data/tree/main/Kuis_2/Klasemen)
 
 Output dari kode program:
 
