@@ -1,5 +1,3 @@
-Tempat pengumpulan mata kuliah **Praktikum Algoritma dan Struktur Data**
-
 **Nama : Muhammad Rafi Rajendra**
 
 **NIM    : 2341720158**
