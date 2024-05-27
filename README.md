@@ -1,5 +1,9 @@
-Nama   : Muhammad Rafi Rajendra
+Tempat pengumpulan mata kuliah Praktikum Algoritma dan Struktur Data
 
-NIM    : 2341720158
+**Nama : Muhammad Rafi Rajendra**
 
-Kelas  : TI-1H
+**NIM    : 2341720158**
+
+**Kelas  : TI-1H**
+
+**Dosen Pengampu : Septian Enggar Sukmana, S.Pd., M.T.**
