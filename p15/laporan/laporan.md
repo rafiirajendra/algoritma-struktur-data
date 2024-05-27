@@ -350,11 +350,28 @@ berparameter.
 
 ### 13.3.2 Pertanyaan Percobaan
 1. Apakah kegunaan dari atribut data dan idxLast yang ada di class BinaryTreeArray? 
-2. Apakah kegunaan dari method populateData()? 
-3. Apakah kegunaan dari method traverseInOrder()? 
-4. Jika suatu node binary tree disimpan dalam array indeks 2, maka di indeks berapakah posisi left child dan rigth child masin-masing? 
-5. Apa kegunaan statement int idxLast = 6 pada praktikum 2 percobaan nomor 4? 
 
+    jawab: 
+    - data: Atribut ini adalah sebuah array yang digunakan untuk menyimpan elemen-elemen dari binary tree. Binary tree diimplementasikan menggunakan array, di mana setiap indeks array merepresentasikan posisi dari node dalam tree.
+    - idxLast: Atribut ini digunakan untuk menyimpan indeks dari elemen terakhir dalam binary tree. Ini membantu dalam membatasi traversal tree hanya sampai elemen terakhir yang valid.
+2. Apakah kegunaan dari method populateData()?
+
+    jawab: Method ini digunakan untuk mengisi array data dengan elemen-elemen yang diberikan dan mengatur nilai idxLast.
+3. Apakah kegunaan dari method traverseInOrder()?
+
+    jawab: Method ini digunakan untuk melakukan traversal in-order pada binary tree yang diimplementasikan dalam array. Traversal in-order adalah proses mengunjungi node dari tree dalam urutan "left subtree, root, right subtree".
+4. Jika suatu node binary tree disimpan dalam array indeks 2, maka di indeks berapakah posisi left child dan rigth child masin-masing?
+
+    jawab: 
+    - Left child dari node yang disimpan pada indeks i dalam array berada pada indeks 2*i + 1.
+    - Right child dari node yang disimpan pada indeks i dalam array berada pada indeks 2*i + 2.
+    
+    Jadi, jika node berada pada indeks 2:
+    - Left child: 2*2 + 1 = 5
+    - Right child: 2*2 + 2 = 6
+5. Apa kegunaan statement int idxLast = 6 pada praktikum 2 percobaan nomor 4?
+
+    jawab: Kegunaan dari statement int idxLast = 6; pada kode di atas adalah untuk menentukan indeks terakhir dari elemen yang valid dalam array data. Dalam konteks binary tree yang diimplementasikan menggunakan array.
 ## 13.4 Tugas Praktikum  
 Waktu pengerjaan: 90 menit 
 1. Buat method di dalam class BinaryTree yang akan menambahkan node dengan cara 
