@@ -343,16 +343,3 @@ berparameter.
 3. Apakah kegunaan dari method traverseInOrder()? 
 4. Jika suatu node binary tree disimpan dalam array indeks 2, maka di indeks berapakah posisi left child dan rigth child masin-masing? 
 5. Apa kegunaan statement int idxLast = 6 pada praktikum 2 percobaan nomor 4? 
-
-## 13.4 Tugas Praktikum  
-**Waktu pengerjaan: 90 menit** 
-1. Buat method di dalam class BinaryTree yang akan menambahkan node dengan cara 
-rekursif. 
-2. Buat method di dalam class BinaryTree untuk menampilkan nilai paling kecil dan yang 
-paling besar yang ada di dalam tree. 
-3. Buat method di dalam class BinaryTree untuk menampilkan data yang ada di leaf. 
-4. Buat method di dalam class BinaryTree untuk menampilkan berapa jumlah leaf yang ada 
-di dalam tree. 
-5. Modifikasi class BinaryTreeArray, dan tambahkan :  
-• method add(int data) untuk memasukan data ke dalam tree  
-• method traversePreOrder() dan traversePostOrder()
