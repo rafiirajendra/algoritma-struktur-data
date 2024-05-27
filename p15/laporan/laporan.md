@@ -292,5 +292,67 @@ berparameter.
 1. Di dalam percobaan implementasi binary tree dengan array ini, data tree disimpan dalam array dan langsung dimasukan dari method main(), dan selanjutnya akan disimulasikan proses traversal secara inOrder. 
 2. Buatlah class BinaryTreeArrayNoAbsen dan BinaryTreeArrayMainNoAbsen 
 3. Buat atribut data dan idxLast di dalam class BinaryTreeArrayNoAbsen. Buat juga method populateData() dan traverseInOrder(). 
+
+    ```java
+    public class BinaryTreeArray19 {
+        int[] data;
+        int idxLast;
+
+        public BinaryTreeArray19(){
+            data = new int[10];
+        }
+
+        void populateData(int data[], int idxLast){
+            this.data = data;
+            this.idxLast = idxLast;
+        }
+
+        void traverseInOrder(int idxStart){
+            if (idxStart <= idxLast) {
+                traverseInOrder(2*idxStart+1);
+                System.out.print(data[idxStart] + " ");
+                traverseInOrder(2*idxStart+2);
+            }
+        }
+    }
+    ```
+
 4. Kemudian dalam class BinaryTreeArrayMainNoAbsen buat method main() dan tambahkan kode seperti gambar berikut ini di dalam method Main
+
+    ```java
+    public class BinaryTreeArrayMain19 {
+        public static void main(String[] args) {
+            BinaryTreeArray19 bta = new BinaryTreeArray19();
+            int[] data = {6,4,8,3,5,7,9,0,0,0};
+            int idxLast = 6;
+            bta.populateData(data, idxLast);
+            System.out.print("\nInOrder traversal:");
+            bta.traverseInOrder(0);
+            System.out.println("\n");
+        }
+    }
+    ```
+
 5. Jalankan class BinaryTreeArrayMain dan amati hasilnya!
+
+    ![alt text](image-3.png)
+
+### 13.3.2 Pertanyaan Percobaan
+1. Apakah kegunaan dari atribut data dan idxLast yang ada di class BinaryTreeArray? 
+2. Apakah kegunaan dari method populateData()? 
+3. Apakah kegunaan dari method traverseInOrder()? 
+4. Jika suatu node binary tree disimpan dalam array indeks 2, maka di indeks berapakah posisi left child dan rigth child masin-masing? 
+5. Apa kegunaan statement int idxLast = 6 pada praktikum 2 percobaan nomor 4? 
+
+## 13.4 Tugas Praktikum  
+**Waktu pengerjaan: 90 menit** 
+1. Buat method di dalam class BinaryTree yang akan menambahkan node dengan cara 
+rekursif. 
+2. Buat method di dalam class BinaryTree untuk menampilkan nilai paling kecil dan yang 
+paling besar yang ada di dalam tree. 
+3. Buat method di dalam class BinaryTree untuk menampilkan data yang ada di leaf. 
+4. Buat method di dalam class BinaryTree untuk menampilkan berapa jumlah leaf yang ada 
+di dalam tree. 
+5. Modifikasi class BinaryTreeArray, dan tambahkan :  
+• method add(int data) untuk memasukan data ke dalam tree  
+• method traversePreOrder() dan traversePostOrder()
