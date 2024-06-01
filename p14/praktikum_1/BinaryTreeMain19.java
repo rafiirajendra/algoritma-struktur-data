@@ -1,4 +1,4 @@
-package p15.praktikum_1;
+package p14.praktikum_1;
 
 public class BinaryTreeMain19 {
     public static void main(String[] args) {

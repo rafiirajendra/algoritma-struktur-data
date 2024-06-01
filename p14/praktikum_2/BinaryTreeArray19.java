@@ -1,4 +1,4 @@
-package p15.praktikum_2;
+package p14.praktikum_2;
 
 public class BinaryTreeArray19 {
     int[] data;

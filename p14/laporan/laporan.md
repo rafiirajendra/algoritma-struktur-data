@@ -373,14 +373,138 @@ berparameter.
 
     jawab: Kegunaan dari statement int idxLast = 6; pada kode di atas adalah untuk menentukan indeks terakhir dari elemen yang valid dalam array data. Dalam konteks binary tree yang diimplementasikan menggunakan array.
 ## 13.4 Tugas Praktikum  
-Waktu pengerjaan: 90 menit 
+**Waktu pengerjaan: 90 menit**
 1. Buat method di dalam class BinaryTree yang akan menambahkan node dengan cara 
 rekursif. 
+
+    ```java
+    //Method menambahkan node dengan cara rekursif
+        public Node19 addRecursive(Node19 current, int data) {
+        if (current == null) {
+            return new Node19(data);
+        }
+    
+        if (data < current.data) {
+            current.left = addRecursive(current.left, data);
+        } else if (data > current.data) {
+            current.right = addRecursive(current.right, data);
+        } else {
+            // Data already exists
+            return current;
+        }
+    
+        return current;
+    }
+    ```
 2. Buat method di dalam class BinaryTree untuk menampilkan nilai paling kecil dan yang 
 paling besar yang ada di dalam tree. 
+
+    ```java
+    //Menampilkan nilai paling kecil dan yang paling besar yang ada di dalam tree
+    public int findMin() {
+        if (root == null) {
+            throw new IllegalStateException("Tree is empty");
+        }
+        return findMinRecursive(root);
+    }
+    
+    public int findMinRecursive(Node19 current) {
+        return current.left == null ? current.data : findMinRecursive(current.left);
+    }
+    
+    public int findMax() {
+        if (root == null) {
+            throw new IllegalStateException("Tree is empty");
+        }
+        return findMaxRecursive(root);
+    }
+    
+    public int findMaxRecursive(Node19 current) {
+        return current.right == null ? current.data : findMaxRecursive(current.right);
+    }
+
+    //Menampilkan data yang ada di leaf
+    public void displayLeaves() {
+        displayLeavesRecursive(root);
+    }
+    
+    public void displayLeavesRecursive(Node19 node) {
+        if (node != null) {
+            if (node.left == null && node.right == null) {
+                System.out.print(" " + node.data);
+            }
+            displayLeavesRecursive(node.left);
+            displayLeavesRecursive(node.right);
+        }
+    }
+    ```
 3. Buat method di dalam class BinaryTree untuk menampilkan data yang ada di leaf. 
+
+    ```java
+    //Menampilkan data yang ada di leaf
+    public void displayLeaves() {
+        displayLeavesRecursive(root);
+    }
+    
+    public void displayLeavesRecursive(Node19 node) {
+        if (node != null) {
+            if (node.left == null && node.right == null) {
+                System.out.print(" " + node.data);
+            }
+            displayLeavesRecursive(node.left);
+            displayLeavesRecursive(node.right);
+        }
+    }
+    ```
 4. Buat method di dalam class BinaryTree untuk menampilkan berapa jumlah leaf yang ada 
 di dalam tree. 
+
+    ```java
+    //menampilkan berapa jumlah leaf yang ada di dalam tree
+    public int countLeaves() {
+        return countLeavesRecursive(root);
+    }
+    
+    public int countLeavesRecursive(Node19 node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1;
+        }
+        return countLeavesRecursive(node.left) + countLeavesRecursive(node.right);
+    }    
+    ```
 5. Modifikasi class BinaryTreeArray, dan tambahkan :  
 • method add(int data) untuk memasukan data ke dalam tree  
 • method traversePreOrder() dan traversePostOrder() 
+
+    ```java
+    //method add(int data) untuk memasukan data ke dalam tree 
+    void add(int value) {
+        if (idxLast == data.length - 1) {
+            System.out.println("The tree is full");
+            return;
+        }
+        data[++idxLast] = value;
+    }
+    ```
+
+    ```java
+    //method traversePreOrder() dan traversePostOrder() 
+    void traversePreOrder(int idxStart){
+        if (idxStart <= idxLast) {
+            System.out.print(data[idxStart] + " ");
+            traversePreOrder(2 * idxStart + 1);
+            traversePreOrder(2 * idxStart + 2);
+        }
+    }
+
+    void traversePostOrder(int idxStart){
+        if (idxStart <= idxLast) {
+            traversePostOrder(2 * idxStart + 1);
+            traversePostOrder(2 * idxStart + 2);
+            System.out.print(data[idxStart] + " ");
+        }
+    }
+    ```

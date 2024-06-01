@@ -1,4 +1,4 @@
-package p15.praktikum_1;
+package p14.tugas;
 
 public class Node19 {
     int data;
