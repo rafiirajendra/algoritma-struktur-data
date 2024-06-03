@@ -247,4 +247,102 @@ Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
 2. Pada class Graph, terdapat atribut list[] bertipe DoubleLinkedList. Sebutkan tujuan pembuatan variabel tersebut! 
 3. Jelaskan alur kerja dari method removeEdge! 
 4. Apakah alasan pemanggilan method addFirst() untuk menambahkan data, bukan method add jenis lain saat digunakan pada method addEdge pada class Graph? 
-5. Modifikasi kode program sehingga dapat dilakukan pengecekan apakah terdapat jalur antara suatu node dengan node lainnya, seperti contoh berikut (Anda dapat memanfaatkan Scanner). 
+5. Modifikasi kode program sehingga dapat dilakukan pengecekan apakah terdapat jalur antara suatu node dengan node lainnya, seperti contoh berikut (Anda dapat memanfaatkan Scanner).
+
+    ![alt text](image-3.png)
+
+## 2.2 Percobaan 2: Implementasi Graph menggunakan Matriks 
+Dengan menggunakan kasus yang sama dengan Percobaan 1, pada percobaan ini implementasi graf dilakukan dengan menggunakan matriks dua dimensi.
+
+###  Langkah-langkah Percobaan 
+**Waktu percobaan: 60 menit**
+1. Buat file baru, beri nama GraphMatriks<NoAbsen>.java 
+2. Lengkapi class GraphMatriks dengan atribut vertex dan matriks
+
+    ```java
+    int vertex;
+    int[][] matriks;
+    ```
+3. Tambahkan konstruktor default untuk menginisialisasi variabel vertex dan menginstansiasi panjang array dua dimensi yang telah ditentukan. 
+
+    ```java
+    public GraphMatriks19(int v){
+        vertex = v;
+        matriks = new int[v][v];
+    }
+    ```
+4. Untuk membuat suatu lintasan yang menghubungkan dua node, maka dibuat method makeEdge() sebagai berikut. 
+
+    ```java
+    public void makeEdge(int asal, int tujuan, int jarak){
+        matriks[asal][tujuan] = jarak;
+    }
+    ```
+5. Tambahkan method removeEdge() untuk menghapus lintasan pada suatu graf.
+
+    ```java
+    public void removeEdge(int asal, int tujuan){
+        matriks[asal][tujuan] = 0;
+    }
+    ```
+6. Tambahkan method printGraph() untuk mencetak graf.
+    
+    ```java
+    public void printGraph() {
+        for (int i = 0; i < vertex; i++) {
+            System.out.print("Gedung " + (char) ('A' + i) + ": ");
+            for (int j = 0; j < vertex; j++) {
+                if (matriks[i][j] != -1) {
+                    System.out.print("Gedung " + (char) ('A' + j) + " (" + matriks[i][j] + " m), ");
+                }
+            }
+            System.out.println();
+        }
+    }
+    ```
+7. Tambahkan kode berikut pada file GraphMain<NoAbsen>.java yang sudah dibuat pada Percobaan 1. 
+    
+    ```java
+    GraphMatriks19 gdg = new GraphMatriks19(4);
+    gdg.makeEdge(0, 1, 50);
+    gdg.makeEdge(1, 0, 60);
+    gdg.makeEdge(1, 2, 70);
+    gdg.makeEdge(2, 1, 80);
+    gdg.makeEdge(2, 3, 40);
+    gdg.makeEdge(3, 0, 90);
+    gdg.printGraph();
+    System.out.println("Hasil setelah penghapusan edge");
+    gdg.removeEdge(2, 1);
+    gdg.printGraph();
+    ```
+8. Commit dan push kode program ke Github 
+9. Compile dan run program. 
+
+### 2.2.2 Verifikasi Hasil Percobaan
+Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
+
+![alt text](image-4.png)
+
+### 2.2.3 Pertanyaan
+1. Perbaiki kode program Anda apabila terdapat error atau hasil kompilasi kode tidak sesuai! 
+2. Apa jenis graph yang digunakan pada Percobaan 2? 
+3. Apa maksud dari dua baris kode berikut?
+
+    ```java
+    gdg.makeEdge(1, 2, 70);
+    gdg.makeEdge(2, 1, 80);
+    ```
+4. Modifikasi kode program sehingga terdapat method untuk menghitung degree, termasuk 
+inDegree dan outDegree!
+
+## 3. Latihan Praktikum 
+**Waktu percobaan: 90 menit** 
+1. Modifikasi kode program pada class GraphMain sehingga terdapat menu program yang bersifat dinamis, setidaknya terdiri dari: 
+   - a) Add Edge 
+   - b) Remove Edge 
+   - c) Degree 
+   - d) Print Graph 
+   - e) Cek Edge 
+Pengguna dapat memilih menu program melalui input Scanner 
+2. Tambahkan method updateJarak pada Percobaan 1 yang digunakan untuk mengubah jarak antara dua node asal dan tujuan! 
+3. Tambahkan method hitungEdge untuk menghitung banyaknya edge yang terdapat di dalam graf!
