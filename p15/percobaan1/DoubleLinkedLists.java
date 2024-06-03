@@ -36,21 +36,21 @@ public class DoubleLinkedLists {
     }
 
     public void remove(int index){
-        if (isEmpty() || index >= size) {
-            System.out.println("Nilai index di luar batas");
-        } else if (index == 0) {
-            head = head.next;
-            head.prev = null;
-        } else {
-            Node19 current = head;
-            for (int i = 0; i < index; i++) {
-                current = current.next;
+       Node19 current = head;
+       while (current != null) {
+            if (current.data == index) {
+                if (current.prev != null) {
+                    current.prev.next = current.next;
+                } else {
+                    head = current.next;
+                }
+                if (current.next != null) {
+                    current.next.prev = current.prev;
+                }
+                break;
             }
-            current.prev.next = current.next;
-            if (current.next != null) {
-                current.next.prev = current.prev;
-            }
-        }
+            current = current.next;
+       }
         size--;
     }
 
@@ -58,8 +58,9 @@ public class DoubleLinkedLists {
         return size;
     }
 
-    public int get(int index){
-        if (isEmpty() || index > size || index < 1) {
+    public int get(int index)throws Exception{
+        if (index >= size) {
+            throw new Exception("Nilai index diluar batas");
         }
         Node19 tmp = head;
         for (int i = 0; i < index; i++) {

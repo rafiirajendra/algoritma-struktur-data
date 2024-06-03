@@ -11,7 +11,6 @@ public class GraphMain19 {
         gedung.addEdge(4, 5, 80);
         gedung.degree(0);
         gedung.printGraph();
-
         gedung.removeEdge(1, 3);
         gedung.printGraph();
     }
