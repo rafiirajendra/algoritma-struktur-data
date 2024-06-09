@@ -243,10 +243,33 @@ Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
 ![alt text](image-1.png)
 
 ### 2.1.3 Pertanyaan 
-1. Perbaiki kode program Anda apabila terdapat error atau hasil kompilasi kode tidak sesuai! 
-2. Pada class Graph, terdapat atribut list[] bertipe DoubleLinkedList. Sebutkan tujuan pembuatan variabel tersebut! 
-3. Jelaskan alur kerja dari method removeEdge! 
-4. Apakah alasan pemanggilan method addFirst() untuk menambahkan data, bukan method add jenis lain saat digunakan pada method addEdge pada class Graph? 
+1. Perbaiki kode program Anda apabila terdapat error atau hasil kompilasi kode tidak sesuai!
+2. Pada class Graph, terdapat atribut list[] bertipe DoubleLinkedList. Sebutkan tujuan pembuatan variabel tersebut!
+
+    jawab: Dalam class Graph19, atribut list[] berfungsi untuk menyimpan daftar tetangga atau hubungan (edges) dari setiap simpul (vertex) dalam graf
+3. Jelaskan alur kerja dari method removeEdge!
+    
+    jawab: 
+
+    Alur Kerja
+    1. Pengecekan Simpul Tujuan:
+
+    - Method removeEdge menerima dua parameter: asal dan tujuan, yang masing-masing merupakan indeks dari simpul asal dan simpul tujuan dari edge yang ingin dihapus.
+    - Method ini menggunakan loop for untuk melakukan iterasi sebanyak jumlah vertex dalam graf.
+    
+    2. Loop Melalui Vertex:
+
+    - Dalam loop for yang beriterasi dari 0 hingga vertex - 1, pengecekan dilakukan pada setiap iterasi untuk menentukan apakah indeks i sama dengan tujuan.
+    - Catatan: Loop ini sebenarnya tidak perlu untuk mengecek semua vertex, karena tujuan hanya untuk memeriksa tujuan dan langsung menghapus edge dari asal ke tujuan. Jadi, loop ini dapat dianggap berlebihan.
+    
+    3. Menghapus Edge:
+
+    - Jika kondisi if (i == tujuan) terpenuhi, maka method remove pada linked list yang terletak di list[asal] dipanggil untuk menghapus elemen yang menyimpan tujuan.
+    - Method remove pada linked list bertugas untuk menemukan dan menghapus node yang berisi nilai tujuan.
+
+4. Apakah alasan pemanggilan method addFirst() untuk menambahkan data, bukan method add jenis lain saat digunakan pada method addEdge pada class Graph?
+
+    jawab: karena method addFirst() menambahkan elemen baru di awal linked list, menambahkan elemen di awal linked list tidak memerlukan pengecekan atau iterasi untuk menemukan posisi akhir list. Kenapa tidak menggunakan addLast() atau lainnya karena method addLast() merupakan penambahan di akhir list mungkin memerlukan iterasi sampai ke elemen terakhir, yang bisa membuat operasi lebih lambat dibandingkan addFirst(), terutama jika list sangat panjang.
 5. Modifikasi kode program sehingga dapat dilakukan pengecekan apakah terdapat jalur antara suatu node dengan node lainnya, seperti contoh berikut (Anda dapat memanfaatkan Scanner).
 
     ![alt text](image-3.png)
@@ -326,14 +349,52 @@ Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
 ### 2.2.3 Pertanyaan
 1. Perbaiki kode program Anda apabila terdapat error atau hasil kompilasi kode tidak sesuai! 
 2. Apa jenis graph yang digunakan pada Percobaan 2? 
+
+    jawab: Pada percobaan di atas, jenis graf yang digunakan adalah directed graph
 3. Apa maksud dari dua baris kode berikut?
 
     ```java
     gdg.makeEdge(1, 2, 70);
     gdg.makeEdge(2, 1, 80);
     ```
+
+    jawab: Maksud dari dua baris kode diatas adalah menunjukkan bahwa dua edge dibuat dalam graf yang ada
 4. Modifikasi kode program sehingga terdapat method untuk menghitung degree, termasuk 
 inDegree dan outDegree!
+
+    jawab: 
+
+    ```java
+    public int outDegree(int v) {
+        int degree = 0;
+        for (int i = 0; i < vertex; i++) {
+            if (matriks[v][i] != -1) {
+                degree++;
+            }
+        }
+        return degree;
+    }
+
+    public int inDegree(int v) {
+        int degree = 0;
+        for (int i = 0; i < vertex; i++) {
+            if (matriks[i][v] != -1) {
+                degree++;
+            }
+        }
+        return degree;
+    }
+
+    public int totalDegree(int v) {
+        return inDegree(v) + outDegree(v);
+    }
+
+    public void printDegrees() {
+        for (int i = 0; i < vertex; i++) {
+            System.out.println("Gedung " + (char) ('A' + i) + ": inDegree = " + inDegree(i) + ", outDegree = " + outDegree(i) + ", totalDegree = " + totalDegree(i));
+        }
+    }
+    ```
 
 ## 3. Latihan Praktikum 
 **Waktu percobaan: 90 menit** 
@@ -342,7 +403,96 @@ inDegree dan outDegree!
    - b) Remove Edge 
    - c) Degree 
    - d) Print Graph 
-   - e) Cek Edge 
-Pengguna dapat memilih menu program melalui input Scanner 
-2. Tambahkan method updateJarak pada Percobaan 1 yang digunakan untuk mengubah jarak antara dua node asal dan tujuan! 
+   - e) Cek Edge
+
+    Pengguna dapat memilih menu program melalui input Scanner 
+
+    jawab: 
+
+    ```java
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        Graph19 gedung = new Graph19(6);
+
+        boolean running = true;
+        while (running) {
+            System.out.println("Menu:");
+            System.out.println("a) Tambah Edge");
+            System.out.println("b) Hapus Edge");
+            System.out.println("c) Degree");
+            System.out.println("d) Cetak Graph");
+            System.out.println("e) Cek Edge");
+            System.out.println("f) Update Jarak");
+            System.out.println("g) Keluar");
+            System.out.print("Pilih opsi: ");
+            char choice = scanner.next().charAt(0);
+
+            switch (choice) {
+                case 'a':
+                    System.out.print("Masukkan asal, tujuan, dan jarak (misal: 0 1 50): ");
+                    int asal = scanner.nextInt();
+                    int tujuan = scanner.nextInt();
+                    int jarak = scanner.nextInt();
+                    gedung.addEdge(asal, tujuan, jarak);
+                    break;
+                case 'b':
+                    System.out.print("Masukkan asal dan tujuan untuk menghapus edge (misal: 1 3): ");
+                    asal = scanner.nextInt();
+                    tujuan = scanner.nextInt();
+                    gedung.removeEdge(asal, tujuan);
+                    break;
+                case 'c':
+                    System.out.print("Masukkan vertex untuk mencari degree (misal: 0): ");
+                    asal = scanner.nextInt();
+                    gedung.degree(asal);
+                    break;
+                case 'd':
+                    gedung.printGraph();
+                    break;
+                case 'e':
+                    System.out.print("Masukkan asal dan tujuan untuk mengecek edge (misal: 0 1): ");
+                    asal = scanner.nextInt();
+                    tujuan = scanner.nextInt();
+                    boolean exists = gedung.checkEdge(asal, tujuan);
+                    System.out.println("Edge ada: " + exists);
+                    break;
+                case 'f':
+                    System.out.print("Masukkan asal, tujuan, dan jarak baru (misal: 0 1 75): ");
+                    asal = scanner.nextInt();
+                    tujuan = scanner.nextInt();
+                    jarak = scanner.nextInt();
+                    gedung.updateJarak(asal, tujuan, jarak);
+                    break;
+                case 'g':
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Opsi tidak valid, silakan coba lagi.");
+            }
+            System.out.println();
+        }
+        scanner.close();
+    }
+    ```
+2. Tambahkan method updateJarak pada Percobaan 1 yang digunakan untuk mengubah jarak antara dua node asal dan tujuan!
+
+    jawab:
+
+    ```java
+    public void updateJarak(int asal, int tujuan, int jarakBaru) throws Exception {
+        list[asal].updateJarak(tujuan, jarakBaru);
+    }
+    ```
 3. Tambahkan method hitungEdge untuk menghitung banyaknya edge yang terdapat di dalam graf!
+
+    jawab: 
+
+    ```java
+    public int hitungEdge() {
+        int totalEdges = 0;
+        for (int i = 0; i < vertex; i++) {
+            totalEdges += list[i].size();  // Menambahkan jumlah node (edge) dari setiap linked list
+        }
+        return totalEdges;
+    }    
+    ```
