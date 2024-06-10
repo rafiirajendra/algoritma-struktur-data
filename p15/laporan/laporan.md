@@ -274,6 +274,10 @@ Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
 
     ![alt text](image-3.png)
 
+    jawab: 
+
+    ![alt text](image-5.png)
+
 ## 2.2 Percobaan 2: Implementasi Graph menggunakan Matriks 
 Dengan menggunakan kasus yang sama dengan Percobaan 1, pada percobaan ini implementasi graf dilakukan dengan menggunakan matriks dua dimensi.
 
